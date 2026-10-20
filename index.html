@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menorca Connect | Conectados a tu isla - Fibra, Móvil y TV en Menorca</title>
+  <meta name="description" content="Menorca Connect: Fibra óptica hasta 1 Gb, Móvil 5G y TV al mejor precio en Menorca, con atención cercana y 100% local." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- TOP NAVIGATION BAR (Exact match to sketch) -->
+  <header class="site-header" id="inicio">
+    <div class="header-container">
+      <!-- Brand Logo -->
+      <a href="#inicio" class="brand-logo" aria-label="Menorca Connect - Inicio">
+        <svg class="logo-mark" viewBox="0 0 120 76" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Left dark navy peak -->
+          <path d="M8 66L32 18C34.5 13 40.5 13 43 18L67 66H52L37.5 36L23 66H8Z" fill="#072140"/>
+          <!-- Overlap dark navy accent -->
+          <path d="M36 41L49 66H63L43 27L36 41Z" fill="#0B2D56"/>
+          <!-- Right teal peak -->
+          <path d="M51 66L75 18C77.5 13 83.5 13 86 18L109 66H94L80.5 38L66 66H51Z" fill="#149A9C"/>
+          <!-- Small teal triangle cutout center -->
+          <polygon points="80.5,52 74,66 87,66" fill="#149A9C"/>
+          <!-- Signal waves on top right of teal peak -->
+          <path d="M89 12C95 14 99 18 101 24" stroke="#149A9C" stroke-width="4" stroke-linecap="round"/>
+          <path d="M93 5C101 8 106 14 109 22" stroke="#149A9C" stroke-width="3.5" stroke-linecap="round" opacity="0.85"/>
+        </svg>
+        <div class="logo-text">
+          <span class="logo-title-navy">MENORCA</span>
+          <span class="logo-title-teal">CONNECT</span>
+          <span class="logo-subtitle">Conectados a tu isla</span>
+        </div>
+      </a>
+
+      <!-- Main Navigation Links -->
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="#inicio" class="nav-link active">Inicio</a>
+        <a href="#tarifas" data-filter="fibra" class="nav-link">Fibra</a>
+        <a href="#tarifas" data-filter="movil" class="nav-link">Móvil</a>
+        <a href="#tarifas" data-filter="tv" class="nav-link">TV</a>
+        <a href="#tarifas" data-filter="combos" class="nav-link">Fibra + Móvil</a>
+        <a href="#empresas" class="nav-link">Empresas</a>
+        <a href="#contacto" class="nav-link">Contacto</a>
+      </nav>
+
+      <!-- Header Right Actions -->
+      <div class="header-actions">
+        <a href="https://wa.me/34671123456?text=Hola%20Menorca%20Connect,%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20vuestras%20tarifas" target="_blank" rel="noopener" class="header-whatsapp-btn">
+          <span class="wa-icon-wrap">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+              <path d="M9.5 9.5c.3 1.2 1.8 2.7 3 3l1.2-.8c.3-.2.7-.1.9.1l1 1.2c.2.3.1.8-.2 1-.9.7-2.2.8-3.4.3-2.1-.9-3.8-2.6-4.7-4.7-.5-1.2-.4-2.5.3-3.4.2-.3.7-.4 1-.2l1.2 1c.2.2.3.6.1.9l-.4 1.6z" fill="currentColor" stroke="none"/>
+            </svg>
+          </span>
+          <span class="wa-btn-text">
+            <small>WhatsApp</small>
+            <strong>671 123 456</strong>
+          </span>
+        </a>
+
+        <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Abrir menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION WITH FAR DE FAVÀRITX & 5 OVERLAPPING CARDS -->
+  <section class="hero-section">
+    <div class="hero-bg">
+      <img src="assets/hero-favaritx.jpg" alt="Faro de Favàritx al atardecer en Menorca" class="hero-bg-img" />
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="hero-container">
+      <!-- Top Hero Copy -->
+      <div class="hero-content">
+        <h1 class="hero-title">
+          <span class="hero-title-white">MENORCA</span>
+          <span class="hero-title-teal">CONNECT</span>
+        </h1>
+        <p class="hero-tagline">Conectados a tu isla.</p>
+        <p class="hero-description">
+          Fibra, móvil y TV al mejor precio,<br />
+          con atención cercana y local.
+        </p>
+        <div class="hero-cta-group">
+          <a href="#tarifas" class="btn-hero-primary">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            VER TARIFAS
+          </a>
+          <a href="https://wa.me/34671123456?text=Hola%20Menorca%20Connect,%20quiero%20consultar%20las%20tarifas" target="_blank" rel="noopener" class="btn-hero-secondary">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+              <path d="M9.5 9.5c.3 1.2 1.8 2.7 3 3l1.2-.8c.3-.2.7-.1.9.1l1 1.2c.2.3.1.8-.2 1-.9.7-2.2.8-3.4.3-2.1-.9-3.8-2.6-4.7-4.7-.5-1.2-.4-2.5.3-3.4.2-.3.7-.4 1-.2l1.2 1c.2.2.3.6.1.9l-.4 1.6z" fill="currentColor" stroke="none"/>
+            </svg>
+            HABLAR POR WHATSAPP
+          </a>
+        </div>
+      </div>
+
+      <!-- 5 SERVICE / PRICING CARDS (Exact match to sketch) -->
+      <div class="hero-cards-grid">
+        <!-- Card 1: FIBRA ÓPTICA -->
+        <article class="service-card theme-teal">
+          <div class="card-top">
+            <div class="card-icon-badge">
+              <!-- Wi-Fi Icon -->
+              <svg viewBox="0 0 32 32" width="30" height="30" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 12.5C10.8 6.8 21.2 6.8 28 12.5"/>
+                <path d="M8.5 17C13 13.2 19 13.2 23.5 17"/>
+                <path d="M13 21.5C14.8 20 17.2 20 19 21.5"/>
+                <circle cx="16" cy="25" r="1.6" fill="#ffffff" stroke="none"/>
+              </svg>
+            </div>
+            <div class="card-heading-info">
+              <h2 class="card-category">FIBRA ÓPTICA</h2>
+              <span class="card-from">desde</span>
+              <div class="card-price-line">
+                <span class="price-amount" data-sketch="XX,XX€" data-real="24,90€">XX,XX€</span>
+                <span class="price-unit">/mes</span>
+              </div>
+            </div>
+          </div>
+          <ul class="card-features">
+            <li><span class="check-icon">✓</span> Hasta 1 Gb de velocidad</li>
+            <li><span class="check-icon">✓</span> Estable y simétrica</li>
+            <li><span class="check-icon">✓</span> Instalación rápida</li>
+          </ul>
+          <a href="#tarifas" data-select-tab="fibra" class="card-btn">VER FIBRA</a>
+        </article>
+
+        <!-- Card 2: MÓVIL -->
+        <article class="service-card theme-green">
+          <div class="card-top">
+            <div class="card-icon-badge">
+              <!-- Mobile Icon -->
+              <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="#ffffff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="4" width="14" height="24" rx="2.5"/>
+                <line x1="14" y1="7" x2="18" y2="7"/>
+                <circle cx="16" cy="24.5" r="1" fill="#ffffff" stroke="none"/>
+              </svg>
+            </div>
+            <div class="card-heading-info">
+              <h2 class="card-category">MÓVIL</h2>
+              <span class="card-from">desde</span>
+              <div class="card-price-line">
+                <span class="price-amount" data-sketch="XX,XX€" data-real="8,90€">XX,XX€</span>
+                <span class="price-unit">/mes</span>
+              </div>
+            </div>
+          </div>
+          <ul class="card-features">
+            <li><span class="check-icon">✓</span> 5G incluido</li>
+            <li><span class="check-icon">✓</span> Datos acumulables</li>
+            <li><span class="check-icon">✓</span> Sin permanencia</li>
+          </ul>
+          <a href="#tarifas" data-select-tab="movil" class="card-btn">VER MÓVIL</a>
+        </article>
+
+        <!-- Card 3: TV -->
+        <article class="service-card theme-purple">
+          <div class="card-top">
+            <div class="card-icon-badge">
+              <!-- TV Icon -->
+              <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="6" width="24" height="16" rx="2"/>
+                <line x1="11" y1="26" x2="21" y2="26"/>
+                <line x1="16" y1="22" x2="16" y2="26"/>
+              </svg>
+            </div>
+            <div class="card-heading-info">
+              <h2 class="card-category">TV</h2>
+              <span class="card-from">desde</span>
+              <div class="card-price-line">
+                <span class="price-amount" data-sketch="XX,XX€" data-real="6,90€">XX,XX€</span>
+                <span class="price-unit">/mes</span>
+              </div>
+            </div>
+          </div>
+          <ul class="card-features">
+            <li><span class="check-icon">✓</span> Más de 80 canales</li>
+            <li><span class="check-icon">✓</span> Series y programas</li>
+            <li><span class="check-icon">✓</span> Grabación y Replay</li>
+          </ul>
+          <a href="#tarifas" data-select-tab="tv" class="card-btn">VER TV</a>
+        </article>
+
+        <!-- Card 4: FIBRA + MÓVIL -->
+        <article class="service-card theme-teal">
+          <div class="card-top">
+            <div class="card-icon-badge">
+              <!-- House + Wifi + Mobile Icon -->
+              <svg viewBox="0 0 36 32" width="31" height="31" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 15L14 6L24 15"/>
+                <path d="M7 13.5V25H21V13.5"/>
+                <path d="M11 17C12.8 15.5 15.2 15.5 17 17"/>
+                <circle cx="14" cy="20.5" r="1.2" fill="#ffffff" stroke="none"/>
+                <rect x="24" y="13" width="7.5" height="13" rx="1.5" fill="#149A9C" stroke="#ffffff" stroke-width="2"/>
+                <circle cx="27.75" cy="23.5" r="0.8" fill="#ffffff" stroke="none"/>
+              </svg>
+            </div>
+            <div class="card-heading-info">
+              <h2 class="card-category">FIBRA + MÓVIL</h2>
+              <span class="card-from">desde</span>
+              <div class="card-price-line">
+                <span class="price-amount" data-sketch="XX,XX€" data-real="32,90€">XX,XX€</span>
+                <span class="price-unit">/mes</span>
+              </div>
+            </div>
+          </div>
+          <ul class="card-features">
+            <li><span class="check-icon">✓</span> La combinación perfecta</li>
+            <li><span class="check-icon">✓</span> Ahorra en tu factura</li>
+            <li><span class="check-icon">✓</span> Todo en una sola factura</li>
+          </ul>
+          <a href="#tarifas" data-select-tab="combos" class="card-btn">VER COMBOS</a>
+        </article>
+
+        <!-- Card 5: FIBRA + MÓVIL + TV -->
+        <article class="service-card theme-orange">
+          <div class="card-top">
+            <div class="card-icon-badge">
+              <!-- TV + Play + Waves Icon -->
+              <svg viewBox="0 0 32 32" width="29" height="29" fill="none" stroke="#ffffff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="8" width="24" height="15" rx="2"/>
+                <polygon points="14,12.5 14,18.5 19.5,15.5" fill="#ffffff" stroke="none"/>
+                <line x1="10" y1="26" x2="22" y2="26"/>
+                <path d="M12 5C14.5 3 17.5 3 20 5"/>
+              </svg>
+            </div>
+            <div class="card-heading-info">
+              <h2 class="card-category">FIBRA + MÓVIL + TV</h2>
+              <span class="card-from">desde</span>
+              <div class="card-price-line">
+                <span class="price-amount" data-sketch="XX,XX€" data-real="38,90€">XX,XX€</span>
+                <span class="price-unit">/mes</span>
+              </div>
+            </div>
+          </div>
+          <ul class="card-features">
+            <li><span class="check-icon">✓</span> Fibra rápida</li>
+            <li><span class="check-icon">✓</span> Móvil 5G</li>
+            <li><span class="check-icon">✓</span> TV con todos los canales</li>
+          </ul>
+          <a href="#tarifas" data-select-tab="ofertas" class="card-btn">VER OFERTAS</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- DARK NAVY TRUST / VALUE BAR (Exact match to sketch) -->
+  <section class="trust-bar" aria-label="Ventajas de Menorca Connect">
+    <div class="trust-bar-container">
+      <!-- Item 1: ATENCIÓN CERCANA -->
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 48 48" width="46" height="46" fill="none" stroke="#18A4A6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="24" cy="24" r="20" stroke-opacity="0.85"/>
+            <circle cx="24" cy="18" r="4.5"/>
+            <path d="M16 33C16 28.5 19.5 26 24 26C28.5 26 32 28.5 32 33"/>
+            <circle cx="15.5" cy="20.5" r="3"/>
+            <path d="M10.5 31C10.5 28 12.5 26 15.5 26"/>
+            <circle cx="32.5" cy="20.5" r="3"/>
+            <path d="M37.5 31C37.5 28 35.5 26 32.5 26"/>
+          </svg>
+        </div>
+        <div class="trust-text">
+          <h3>ATENCIÓN CERCANA</h3>
+          <p>Estamos en Menorca,<br/>estamos contigo.</p>
+        </div>
+      </div>
+
+      <!-- Item 2: PRECIOS CLAROS -->
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 48 48" width="46" height="46" fill="none" stroke="#18A4A6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M25.5 8H38C39.1 8 40 8.9 40 10V22.5L22.5 40C21.1 41.4 18.9 41.4 17.5 40L8 30.5C6.6 29.1 6.6 26.9 8 25.5L25.5 8Z"/>
+            <circle cx="32.5" cy="15.5" r="2.5"/>
+            <path d="M11 38L14 35M16 42L18 40"/>
+          </svg>
+        </div>
+        <div class="trust-text">
+          <h3>PRECIOS CLAROS</h3>
+          <p>Sin letra pequeña.<br/>Lo que ves, es lo que pagas.</p>
+        </div>
+      </div>
+
+      <!-- Item 3: CONEXIÓN RÁPIDA -->
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 48 48" width="46" height="46" fill="none" stroke="#18A4A6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 34C7.5 30.5 6 26.2 6 21.5C6 11.8 14.1 4 24 4C33.9 4 42 11.8 42 21.5C42 26.2 40.5 30.5 38 34"/>
+            <path d="M24 23L32 14"/>
+            <circle cx="24" cy="23" r="3"/>
+            <path d="M12 22H14M15.5 13.5L17 15M24 10V12M32.5 13.5L31 15M36 22H34"/>
+            <path d="M17 36H31"/>
+          </svg>
+        </div>
+        <div class="trust-text">
+          <h3>CONEXIÓN RÁPIDA</h3>
+          <p>Fibra de alta velocidad<br/>y 5G donde lo necesites.</p>
+        </div>
+      </div>
+
+      <!-- Item 4: SIN PERMANENCIA -->
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 48 48" width="46" height="46" fill="none" stroke="#18A4A6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M24 6L38 12V23C38 32.5 31.8 39.8 24 43C16.2 39.8 10 32.5 10 23V12L24 6Z"/>
+            <polyline points="18 24 22.5 28.5 30.5 19.5"/>
+          </svg>
+        </div>
+        <div class="trust-text">
+          <h3>SIN PERMANENCIA</h3>
+          <p>Tú eliges cuándo<br/>y cómo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: HECHA PARA MENORCA (Starts exactly as in the bottom of the sketch and expands into the full Main Page) -->
+  <section class="made-for-menorca-section" id="nosotros">
+    <div class="section-container">
+      <div class="section-header-center">
+        <span class="section-eyebrow">HECHA PARA MENORCA</span>
+        <h2 class="section-main-title">Una compañía local, para una isla única.</h2>
+        <div class="section-title-underline"></div>
+      </div>
+
+      <!-- Presentation Price Mode Bar (Helpful interactive toggle for the presentation) -->
+      <div class="presentation-toolbar">
+        <span class="toolbar-label">Modo de vista de precios:</span>
+        <div class="price-mode-switch" role="group" aria-label="Selector de visualización de precios">
+          <button type="button" class="mode-btn active" id="btnModeSketch">Boceto (XX,XX€)</button>
+          <button type="button" class="mode-btn" id="btnModeReal">Precios Demo (€)</button>
+        </div>
+      </div>
+
+      <!-- Local Identity Story & Visual Grid -->
+      <div class="island-story-grid">
+        <div class="story-card story-card-large">
+          <div class="story-img-wrap">
+            <img src="assets/menorca-local-team.jpg" alt="Atención presencial de Menorca Connect en nuestras oficinas de la isla" loading="lazy" />
+            <span class="story-badge">De Menorca, para Menorca</span>
+          </div>
+          <div class="story-body">
+            <h3>Hablamos tu idioma, sin centralitas ni robots</h3>
+            <p>
+              En <strong>Menorca Connect</strong> nacimos con una idea clara: ofrecer a los hogares y empresas de nuestra isla la mejor fibra óptica y cobertura móvil 5G con el trato humano de toda la vida. Cuando nos llamas o nos escribes por WhatsApp, te atiende nuestro equipo desde aquí, en Maó o Ciutadella.
+            </p>
+            <div class="story-highlights">
+              <div class="highlight-pill">
+                <strong>100% Local</strong>
+                <span>Equipo propio en la isla</span>
+              </div>
+              <div class="highlight-pill">
+                <strong>24 - 48h</strong>
+                <span>Alta e instalación rápida</span>
+              </div>
+              <div class="highlight-pill">
+                <strong>4.9 ★</strong>
+                <span>Valoración de clientes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-card story-card-side">
+          <div class="story-img-wrap">
+            <img src="assets/menorca-cala-connected.jpg" alt="Conectividad de alta velocidad en cualquier rincón de Menorca" loading="lazy" />
+            <span class="story-badge badge-orange">Hogar y Segunda Residencia</span>
+          </div>
+          <div class="story-body">
+            <h3>Conectividad pensada para el ritmo de nuestra isla</h3>
+            <p>
+              Tanto si vives todo el año en el centro de Ciutadella o Maó, como si teletrabajas frente al mar o necesitas tarifas flexibles para tu segunda residencia en temporada, nos adaptamos a ti sin ataduras.
+            </p>
+            <ul class="story-check-list">
+              <li><span>✓</span> Fibra simétrica de última generación hasta 1 Gb</li>
+              <li><span>✓</span> Pausas o cambios de tarifa flexibles sin penalización</li>
+              <li><span>✓</span> Portabilidad gratuita conservando tu número de siempre</li>
+            </ul>
+            <a href="https://wa.me/34671123456?text=Hola%20Menorca%20Connect,%20quiero%20saber%20m%C3%A1s%20sobre%20vuestro%20servicio%20en%20Menorca" target="_blank" rel="noopener" class="story-link">
+              Hablar con un asesor local →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE TARIFFS SHOWCASE SECTION -->
+  <section class="tariffs-section" id="tarifas">
+    <div class="section-container">
+      <div class="section-header-center">
+        <span class="section-eyebrow">NUESTRAS TARIFAS CLARAS</span>
+        <h2 class="section-main-title">Elige la tarifa perfecta para ti</h2>
+        <p class="section-subtitle">Precios definitivos con IVA incluido, para siempre y sin sorpresas a fin de mes.</p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="tariff-tabs" role="tablist">
+        <button class="tariff-tab active" data-tab="combos" role="tab">Fibra + Móvil</button>
+        <button class="tariff-tab" data-tab="ofertas" role="tab">Fibra + Móvil + TV</button>
+        <button class="tariff-tab" data-tab="fibra" role="tab">Solo Fibra</button>
+        <button class="tariff-tab" data-tab="movil" role="tab">Móvil 5G</button>
+        <button class="tariff-tab" data-tab="tv" role="tab">Menorca TV</button>
+      </div>
+
+      <!-- Dynamic Plans Grid -->
+      <div class="plans-showcase-grid" id="plansContainer">
+        <!-- Populated dynamically / pre-rendered default (Combos) -->
+        <div class="plan-detail-card" data-category="combos">
+          <div class="plan-tag">Más elegido en Menorca</div>
+          <div class="plan-header">
+            <h3>Combo Isla 600 Mb + 50 GB</h3>
+            <p>Ideal para parejas y hogares conectados</p>
+          </div>
+          <div class="plan-price-box">
+            <span class="plan-price-val" data-sketch="XX,XX€" data-real="32,90€">XX,XX€</span>
+            <span class="plan-price-meta">/mes · IVA incl.</span>
+          </div>
+          <ul class="plan-specs">
+            <li><strong>Fibra 600 Mb</strong> simétrica de alta estabilidad</li>
+            <li><strong>Línea móvil 5G con 50 GB</strong> acumulables</li>
+            <li><strong>Llamadas ilimitadas</strong> a fijos y móviles</li>
+            <li><strong>Router Wi-Fi 6</strong> e instalación incluida</li>
+          </ul>
+          <a href="https://wa.me/34671123456?text=Hola,%20me%20interesa%20el%20Combo%20Isla%20600Mb%20+%2050GB" target="_blank" rel="noopener" class="plan-cta-btn teal">Lo quiero por WhatsApp</a>
+        </div>
+
+        <div class="plan-detail-card featured" data-category="combos">
+          <div class="plan-tag tag-orange">Máxima Velocidad</div>
+          <div class="plan-header">
+            <h3>Combo Far 1 Gb + Ilimitado</h3>
+            <p>Para familias, teletrabajo y streaming 4K</p>
+          </div>
+          <div class="plan-price-box">
+            <span class="plan-price-val" data-sketch="XX,XX€" data-real="39,90€">XX,XX€</span>
+            <span class="plan-price-meta">/mes · IVA incl.</span>
+          </div>
+          <ul class="plan-specs">
+            <li><strong>Fibra 1 Gb (1000 Mb)</strong> simétrica real</li>
+            <li><strong>2 Líneas móviles 5G</strong> con GB ilimitados</li>
+            <li><strong>Llamadas ilimitadas</strong> nacionales</li>
+            <li><strong>Todo en una sola factura</strong> sin permanencia</li>
+          </ul>
+          <a href="https://wa.me/34671123456?text=Hola,%20me%20interesa%20el%20Combo%20Far%201Gb%20+%20Ilimitado" target="_blank" rel="noopener" class="plan-cta-btn orange">Lo quiero por WhatsApp</a>
+        </div>
+
+        <div class="plan-detail-card" data-category="combos">
+          <div class="plan-tag">Especial Familias</div>
+          <div class="plan-header">
+            <h3>Pack Familiar 1 Gb + 3 Líneas</h3>
+            <p>Todos conectados con datos compartidos</p>
+          </div>
+          <div class="plan-price-box">
+            <span class="plan-price-val" data-sketch="XX,XX€" data-real="46,90€">XX,XX€</span>
+            <span class="plan-price-meta">/mes · IVA incl.</span>
+          </div>
+          <ul class="plan-specs">
+            <li><strong>Fibra 1 Gb</strong> + amplificador Mesh opcional</li>
+            <li><strong>3 Líneas 5G</strong> con 100 GB cada una</li>
+            <li><strong>Pack Menorca TV</strong> básico de regalo</li>
+            <li><strong>Atención preferente</strong> en tienda y WhatsApp</li>
+          </ul>
+          <a href="https://wa.me/34671123456?text=Hola,%20me%20interesa%20el%20Pack%20Familiar%201Gb%20+%203%20L%C3%ADneas" target="_blank" rel="noopener" class="plan-cta-btn teal">Lo quiero por WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ISLAND COVERAGE SECTION -->
+  <section class="coverage-section" id="cobertura">
+    <div class="section-container">
+      <div class="coverage-banner">
+        <div class="coverage-left">
+          <span class="section-eyebrow light">COBERTURA EN TODA LA ISLA</span>
+          <h2>Llegamos a los 8 municipios y urbanizaciones de Menorca</h2>
+          <p>
+            Nuestra red de fibra óptica y cobertura móvil 5G conecta de punta a punta la isla: desde el puerto de Maó hasta Ciutadella, pasando por cada pueblo y cala.
+          </p>
+          <div class="towns-pills">
+            <span class="town-pill">📍 Maó</span>
+            <span class="town-pill">📍 Ciutadella</span>
+            <span class="town-pill">📍 Alaior</span>
+            <span class="town-pill">📍 Es Mercadal</span>
+            <span class="town-pill">📍 Ferreries</span>
+            <span class="town-pill">📍 Es Castell</span>
+            <span class="town-pill">📍 Sant Lluís</span>
+            <span class="town-pill">📍 Es Migjorn Gran</span>
+            <span class="town-pill">🏖️ Fornells · Son Bou · Binibèquer · Cala en Blanes</span>
+          </div>
+        </div>
+        <div class="coverage-right">
+          <div class="coverage-checker-card">
+            <h3>Comprueba tu cobertura ahora</h3>
+            <p>Indícanos tu calle o municipio y te confirmamos velocidad disponible en menos de 2 minutos.</p>
+            <form id="coverageForm" class="coverage-form">
+              <input type="text" id="coverageAddress" placeholder="Ej: Carrer Nou 14, Maó / Ciutadella..." required />
+              <input type="tel" id="coveragePhone" placeholder="Tu teléfono o WhatsApp" required />
+              <button type="submit" class="btn-check-coverage">
+                Consultar Cobertura Gratis
+              </button>
+            </form>
+            <small class="coverage-note">🔒 Respuesta directa de un técnico local en Menorca. Sin llamadas comerciales molestas.</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMPRESAS & AUTÓNOMOS SECTION -->
+  <section class="empresas-section" id="empresas">
+    <div class="section-container">
+      <div class="empresas-grid">
+        <div class="empresas-info">
+          <span class="section-eyebrow">MENORCA CONNECT EMPRESAS</span>
+          <h2>Soluciones a medida para negocios, comercios y hostelería de la isla</h2>
+          <p>
+            Sabemos que tu negocio no puede parar, y menos en plena temporada. Ofrecemos conectividad profesional garantizada con soporte técnico presencial en Menorca.
+          </p>
+          <div class="empresas-features">
+            <div class="emp-feat">
+              <div class="emp-feat-icon">⚡</div>
+              <div>
+                <h4>Fibra PRO Dedicada y Simétrica</h4>
+                <p>Con IP fija, backup 4G/5G automático y Wi-Fi profesional para clientes y empleados.</p>
+              </div>
+            </div>
+            <div class="emp-feat">
+              <div class="emp-feat-icon">📞</div>
+              <div>
+                <h4>Centralita Virtual y Líneas Móviles</h4>
+                <p>Gestiona llamadas, extensiones y horarios de tu empresa desde cualquier dispositivo.</p>
+              </div>
+            </div>
+            <div class="emp-feat">
+              <div class="emp-feat-icon">🛠️</div>
+              <div>
+                <h4>Soporte Técnico Local en el Día</h4>
+                <p>Un técnico asignado en Menorca que conoce tu instalación por su nombre.</p>
+              </div>
+            </div>
+          </div>
+          <a href="https://wa.me/34671123456?text=Hola,%20solicito%20asesoramiento%20para%20Empresas/Aut%C3%B3nomos%20en%20Menorca" target="_blank" rel="noopener" class="btn-empresas">
+            Solicitar estudio gratuito para mi empresa
+          </a>
+        </div>
+
+        <div class="empresas-cards-side">
+          <div class="emp-plan-box">
+            <span class="emp-badge">Autónomos y Comercios</span>
+            <h3>Pack Negocio Local</h3>
+            <div class="emp-price">
+              <span class="price-amount" data-sketch="XX,XX€" data-real="36,90€">XX,XX€</span>
+              <small>/mes + IVA</small>
+            </div>
+            <ul>
+              <li>✓ Fibra PRO 1 Gb Simétrica</li>
+              <li>✓ 2 Líneas Móviles 5G Ilimitadas</li>
+              <li>✓ Fijo con llamadas ilimitadas</li>
+              <li>✓ Asistencia prioritaria en 2h</li>
+            </ul>
+          </div>
+          <div class="emp-plan-box dark">
+            <span class="emp-badge teal">Hostelería, Villas y Pymes</span>
+            <h3>Soluciones Wi-Fi & Centralita</h3>
+            <div class="emp-price">
+              <span>A medida</span>
+            </div>
+            <ul>
+              <li>✓ Red Wi-Fi 6 de alta densidad</li>
+              <li>✓ Caudal garantizado y backup 5G</li>
+              <li>✓ Tarifas flexibles de temporada</li>
+              <li>✓ Visita técnica sin compromiso</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO & FOOTER -->
+  <footer class="site-footer" id="contacto">
+    <div class="section-container">
+      <div class="footer-cta-box">
+        <div class="footer-cta-text">
+          <h2>¿Hablamos? Pásate a la compañía de tu isla</h2>
+          <p>Escríbenos por WhatsApp, llámanos o visítanos. Nos encargamos de todo el cambio gratis y en 24h.</p>
+        </div>
+        <div class="footer-cta-buttons">
+          <a href="https://wa.me/34671123456?text=Hola%20Menorca%20Connect,%20quiero%20informaci%C3%B3n" target="_blank" rel="noopener" class="btn-footer-wa">
+            WhatsApp: 671 123 456
+          </a>
+          <a href="tel:+34671123456" class="btn-footer-call">
+            Llamar al 671 123 456
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-main-grid">
+        <div class="footer-col brand-col">
+          <div class="footer-logo">
+            <span class="logo-title-white">MENORCA</span>
+            <span class="logo-title-teal">CONNECT</span>
+          </div>
+          <p>Conectados a tu isla. Operador local de telecomunicaciones en Menorca: fibra óptica, móvil 5G y televisión con trato humano y precios claros.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Servicios</h4>
+          <ul>
+            <li><a href="#tarifas" data-select-tab="fibra">Fibra Óptica en Menorca</a></li>
+            <li><a href="#tarifas" data-select-tab="movil">Tarifas Móvil 5G</a></li>
+            <li><a href="#tarifas" data-select-tab="tv">Menorca Connect TV</a></li>
+            <li><a href="#tarifas" data-select-tab="combos">Combos Fibra + Móvil</a></li>
+            <li><a href="#empresas">Soluciones Empresas</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Puntos de Atención</h4>
+          <ul>
+            <li><strong>Maó:</strong> Atención presencial y soporte</li>
+            <li><strong>Ciutadella:</strong> Punto de atención al cliente</li>
+            <li><strong>Horario:</strong> Lunes a Viernes 9:00 – 20:00h</li>
+            <li><strong>Sábados:</strong> 10:00 – 14:00h</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contacto Directo</h4>
+          <ul>
+            <li>📱 WhatsApp: <a href="https://wa.me/34671123456">671 123 456</a></li>
+            <li>✉️ Email: <a href="mailto:hola@menorcaconnect.es">hola@menorcaconnect.es</a></li>
+            <li>📍 Menorca, Illes Balears</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Menorca Connect · Todos los derechos reservados · Hecha con orgullo en Menorca.</p>
+        <div class="footer-legal">
+          <a href="#inicio">Aviso Legal</a>
+          <a href="#inicio">Privacidad</a>
+          <a href="#inicio">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING GLOSSY WHATSAPP BUTTON (Exact match to bottom-right of sketch) -->
+  <a href="https://wa.me/34671123456?text=Hola%20Menorca%20Connect,%20me%20gustar%C3%ADa%20consultar%20las%20tarifas" target="_blank" rel="noopener" class="floating-whatsapp-orb" aria-label="Hablar por WhatsApp con Menorca Connect">
+    <svg viewBox="0 0 32 32" width="32" height="32" fill="none">
+      <path d="M26.5 15.4C26.5 21.3 21.7 26.1 15.8 26.1C13.9 26.1 12.1 25.6 10.6 24.7L5.5 26.3L7.2 21.4C6.2 19.7 5.6 17.8 5.6 15.7C5.6 9.8 10.4 5 16.3 5C22.2 5 26.5 9.6 26.5 15.4Z" stroke="#ffffff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12.6 11.5C12.3 10.8 12 10.8 11.7 10.8H11C10.7 10.8 10.2 11 9.8 11.5C9.4 12 8.4 12.9 8.4 14.8C8.4 16.7 9.8 18.5 10 18.8C10.2 19.1 12.7 23.1 16.7 24.6C19.9 25.8 20.6 25.6 21.3 25.5C22 25.4 23.6 24.5 23.9 23.6C24.2 22.7 24.2 21.9 24.1 21.7C24 21.5 23.7 21.4 23.2 21.2C22.7 21 20.9 20.1 20.5 19.9C20.1 19.7 19.9 19.6 19.6 20.1C19.3 20.6 18.5 21.5 18.3 21.8C18.1 22.1 17.8 22.1 17.3 21.9C16.8 21.7 15.3 21.1 13.5 19.5C12.1 18.2 11.2 16.7 10.9 16.2C10.6 15.7 10.9 15.4 11.1 15.2C11.3 15 11.6 14.6 11.8 14.3C12 14 12.1 13.8 12.2 13.5C12.3 13.2 12.3 12.9 12.1 12.6L12.6 11.5Z" fill="#ffffff" transform="translate(1.2, -1.5) scale(0.86)"/>
+    </svg>
+  </a>
+
+  <script src="app.js"></script>
+</body>
+</html>

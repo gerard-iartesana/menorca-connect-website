@@ -1,0 +1,548 @@
+/* ════════════════════════════════════════════════════════════════════════════
+   Menorca Connect · Operadora local de Fibra, Móvil 5G y TV en Menorca — tokens.css
+   FUENTE ÚNICA DE VERDAD de los tokens. No hay ninguna otra copia autorizada.
+
+   Lo importan:
+     · la web pública (index.html / styles.css) y el panel de gestión (/dashboard),
+       cuando migren →  @import ".../docs/design-system/tokens.css";
+     · guia-visual.html   →  bloques TOKENS y MANIFEST, generados con
+                              `node sync-design-system.mjs` (nunca a mano)
+
+   Los .md documentan DECISIONES y MOTIVOS, no valores. Si un valor de un .md
+   no coincide con este archivo, manda este archivo.
+
+   Protocolo: cambiar un token = cambiar esta línea, ejecutar `node sync-design-system.mjs`
+   y anotar la decisión en el «Registro de decisiones» de MENORCA_CONNECT_DESIGN.md. Nada más.
+   ════════════════════════════════════════════════════════════════════════════ */
+
+@theme static {
+  /* Dos familias complementarias que ya carga index.html desde Google Fonts:
+     Plus Jakarta Sans para interfaz densa, tablas, formularios y lectura clara;
+     Montserrat geométrica para titulares comerciales, precios y velocidades.
+     Sin monoespaciada y SIN CURSIVA: tarifas, GB, Mb y teléfonos usan `tabular-nums`. */
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Montserrat", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* ══ 1. PRIMITIVOS ═══════════════════════════════════════════════════════
+     Paleta de marca extraída de la identidad de Menorca Connect: el azul marino
+     profundo del Mediterráneo nocturno y los faros menorquines, la brisa clara
+     de la isla, y el turquesa característico de sus calas y su señal de fibra.
+     Un solo color por familia; cero grises industriales fríos (slate/gray). */
+  --color-mc-marino: #072140;      /* azul marino profundo: tinta principal, franja de confianza, pie, menú lateral y CTA en gestión */
+  --color-mc-brisa: #F3F7F9;       /* brisa insular clara: lienzo principal luminoso, nunca gris frío de oficina */
+  --color-mc-blanco: #FFFFFF;      /* blanco puro: tarjetas de tarifas, formularios y superficies elevadas */
+  --color-mc-turquesa: #0A7275;    /* turquesa Menorca Connect calibrado AA (5,3:1 sobre brisa · 5,7:1 con blanco): acción primaria, foco y CTA web */
+  --color-mc-verde: #2D7A1F;       /* verde cobertura / 5G (5,0:1 sobre brisa · 5,4:1 con blanco): fibra disponible, línea activa, alta completada */
+  --color-mc-ambar: #E5960A;       /* ámbar faro de Favàritx: portabilidad en curso, pendiente de técnico, modo boceto */
+  --color-mc-coral: #B42929;       /* coral de alerta (5,9:1 sobre brisa · 6,4:1 con blanco): incidencia de red, error, eliminar */
+
+  /* ══ 2. ESQUEMA — superficies, líneas y texto ════════════════════════════
+     Definidos como «lienzo brisa / encima de brisa», no como «claro».
+     El bloque «ESQUEMA MARINO» ([data-theme="dark"]) redefine estos tokens. */
+  --color-page: var(--color-mc-brisa);
+  --color-surface: var(--color-mc-blanco);
+  --color-surface-sunken: color-mix(in oklab, var(--color-mc-marino) 5%, var(--color-mc-brisa));     /* SubNav, pestañas de tarifas, bandas alternas */
+  --color-surface-raised: var(--color-mc-blanco);                                                    /* inputs, selectores de municipio, menús */
+  --color-surface-hover: color-mix(in oklab, var(--color-mc-marino) 5%, var(--color-mc-blanco));
+  --color-surface-overlay: var(--color-mc-blanco);                                                   /* modales y drawers */
+  --color-overlay: color-mix(in oklab, var(--color-mc-marino) 62%, transparent);
+
+  --color-line: color-mix(in oklab, var(--color-mc-marino) 12%, var(--color-mc-brisa));              /* filete divisorio limpio */
+  --color-line-strong: color-mix(in oklab, var(--color-mc-marino) 52%, var(--color-mc-brisa));       /* borde de control · ≥3,4:1 (WCAG 1.4.11 pide ≥3:1) */
+
+  --color-fg: var(--color-mc-marino);                                                                /* 15,0:1 sobre brisa */
+  --color-fg-muted: color-mix(in oklab, var(--color-mc-marino) 70%, var(--color-mc-brisa));          /* 5,6:1 · cuerpo secundario (sustituye a #6c7d90 / #8796a5) */
+  --color-fg-subtle: color-mix(in oklab, var(--color-mc-marino) 45%, var(--color-mc-brisa));         /* 2,7:1 · SOLO decorativo o deshabilitado */
+
+  /* Enlace en texto corrido: marino firme; al pasar el ratón pasa a turquesa. */
+  --color-link: var(--color-fg);
+  --color-link-hover: var(--color-primary);
+
+  /* Logotipo (assets/logo-menorca-connect.svg): pico izquierdo y MENORCA en marino;
+     pico derecho, ondas de señal y CONNECT en turquesa. En bloques marinos
+     ([data-theme="dark"]) se invierte automáticamente a brisa + turquesa luminoso. */
+  --color-logo-mark: var(--color-mc-turquesa);
+  --color-logo-text: var(--color-mc-marino);
+
+  /* El ÚNICO velo sobre fotografía: marino al 76%. Sobre espuma blanca o cielo
+     despejado del Faro de Favàritx deja el texto brisa en ~7,0:1 (sustituye al
+     linear-gradient desigual de la portada actual cuando lleva texto encima). */
+  --color-scrim: color-mix(in oklab, var(--color-mc-marino) 76%, transparent);
+
+  /* ══ 3. ROLES SEMÁNTICOS ═════════════════════════════════════════════════
+     {rol}        texto, iconos, bordes y fondos suaves (con opacidad)
+     {rol}-solid  relleno sólido
+     {rol}-fg     texto sobre el relleno sólido */
+  --color-primary: var(--color-mc-turquesa);                                                         /* 5,3:1 sobre brisa */
+  --color-primary-solid: var(--color-mc-turquesa);
+  --color-primary-hover: color-mix(in oklab, var(--color-mc-turquesa) 85%, var(--color-mc-marino));
+  --color-primary-fg: var(--color-mc-blanco);                                                        /* 5,7:1 */
+
+  --color-success: var(--color-mc-verde);                                                            /* 5,0:1 */
+  --color-success-solid: var(--color-mc-verde);
+  --color-success-fg: var(--color-mc-blanco);                                                        /* 5,4:1 */
+
+  /* El ámbar puro sobre brisa no alcanza 4,5:1 como texto: para texto e icono se
+     oscurece con marino; como relleno sólido lleva texto marino (6,7:1). */
+  --color-warning: color-mix(in oklab, var(--color-mc-ambar) 60%, var(--color-mc-marino));           /* 5,5:1 */
+  --color-warning-solid: var(--color-mc-ambar);
+  --color-warning-fg: var(--color-mc-marino);                                                        /* 6,7:1 */
+
+  --color-danger: var(--color-mc-coral);                                                             /* 5,9:1 */
+  --color-danger-solid: var(--color-mc-coral);
+  --color-danger-fg: var(--color-mc-blanco);                                                         /* 6,4:1 */
+
+  /* Anillo de foco: turquesa Menorca Connect (5,3:1; WCAG 2.4.13 pide ≥3:1). */
+  --color-focus: var(--color-primary);
+
+  /* ══ 4. TOKENS DE CONTEXTO ═══════════════════════════════════════════════
+     Lo que distingue al panel operativo (/dashboard) de la web comercial sin
+     duplicar componentes. En el panel el CTA institucional es marino profundo;
+     en la web pública pasa al turquesa de marca («Ver tarifas», «Comprobar cobertura»). */
+  --color-cta: var(--color-mc-marino);
+  --color-cta-fg: var(--color-mc-blanco);
+  --color-cta-hover: color-mix(in oklab, var(--color-mc-marino) 82%, var(--color-mc-turquesa));
+  --radius-cta: var(--radius-control);
+
+  /* Botón secundario: borde y texto; en hover se rellena. */
+  --color-secondary: var(--color-fg);
+  --color-secondary-hover: var(--color-fg);
+  --color-secondary-hover-fg: var(--color-page);
+
+  /* Acento de sección: antetítulos («HECHA PARA MENORCA»), filetes e iconos clave. */
+  --color-accent: var(--color-fg-muted);
+
+  /* ══ 5. PALETA CATEGÓRICA ════════════════════════════════════════════════
+     Identidad de las cuatro familias de producto de Menorca Connect en analítica
+     y desgloses (Fibra óptica, Móvil 5G, Menorca TV, Combos): identidad, no estado.
+     Calibradas en luminancia media para cumplir ≥3:1 a la vez sobre brisa, blanco
+     Y marino, con separación ΔE ≥ 15 normal y ΔE ≥ 8 en protanopia y deuteranopia. */
+  --color-cat-1: #0D89E0;            /* Fibra óptica · azul cala */
+  --color-cat-2: #3B9468;            /* Móvil 5G · verde posidonia */
+  --color-cat-3: #CB65A9;            /* Menorca TV · violeta canal */
+  --color-cat-4: #BA7316;            /* Combos · ámbar de faro */
+
+  /* ══ 6. TIPOGRAFÍA ═══════════════════════════════════════════════════════
+     9 pasos coordinados. Los titulares (`hero`, `display`, `heading`, `title`)
+     aportan la firmeza geométrica de marca (pesos 700–800), mientras `body` y
+     `body-sm` priorizan lectura nítida de condiciones, precios y cobertura. */
+  --text-micro: 0.6875rem;                          /* 11 · badges, etiquetas de velocidad e IVA incl. */
+  --text-micro--line-height: 1rem;
+  --text-caption: 0.75rem;                          /* 12 · antetítulos, cabeceras de tabla y ayudas */
+  --text-caption--line-height: 1rem;
+  --text-body-sm: 0.875rem;                         /* 14 · interfaz del panel, características de tarifa y botones */
+  --text-body-sm--line-height: 1.25rem;
+  --text-body: 1rem;                                /* 16 · lectura general y formularios de cobertura */
+  --text-body--line-height: 1.6rem;
+  --text-lead: 1.125rem;                            /* 18 · subtítulos comerciales («Conectados a tu isla.») */
+  --text-lead--line-height: 1.7rem;
+  --text-title: 1.25rem;                            /* 20 · nombre de tarifa, tarjeta de categoría y modal */
+  --text-title--line-height: 1.65rem;
+  --text-title--font-weight: 700;
+  --text-heading: 1.5rem;                           /* 24 · h1 del panel /dashboard, precio mensual destacado */
+  --text-heading--line-height: 1.95rem;
+  --text-heading--font-weight: 700;
+  --text-heading--letter-spacing: -0.02em;
+  --text-display: clamp(1.75rem, 3vw, 2.25rem);     /* 28–36 · titular de sección web («Una compañía local…») */
+  --text-display--line-height: 1.2;
+  --text-display--font-weight: 800;
+  --text-display--letter-spacing: -0.02em;
+  --text-hero: clamp(2.25rem, 4.5vw, 3.25rem);      /* 36–52 · titular de portada sobre el Faro de Favàritx */
+  --text-hero--line-height: 1.1;
+  --text-hero--font-weight: 800;
+  --text-hero--letter-spacing: -0.02em;
+
+  /* ══ 7. RADIOS ═══════════════════════════════════════════════════════════
+     Geometría cercana y técnica fiel al boceto de Menorca Connect (8 · 14 · 18):
+     amable sin caer en burbujas infantiles. `rounded-full` solo en badges,
+     pestañas cápsula de filtro y avatares. */
+  --radius-control-inner: max(0px, calc(var(--radius-control) - 0.125rem));  /* 6 */
+  --radius-control: 0.5rem;                         /* 8 · botones, inputs, chips, acceso WhatsApp */
+  --radius-card: 0.875rem;                          /* 14 · las 5 tarjetas de servicio, fichas de tarifa y tablas */
+  --radius-panel: 1.125rem;                         /* 18 · modales, drawers y bloques destacados */
+
+  /* ══ 8. DENSIDAD Y ESPACIADO ═════════════════════════════════════════════ */
+  --spacing-control-sm: 2rem;                       /* 32 · barras de filtro de escritorio */
+  --spacing-control-md: 2.5rem;                     /* 40 · por defecto en el panel /dashboard */
+  --spacing-control-lg: 3rem;                       /* 48 · CTA comercial web y comprobador de cobertura */
+  --spacing-touch: 2.75rem;                         /* 44 · mínimo táctil (WCAG 2.2) */
+
+  --spacing-sidebar: 15.5rem;                       /* 248 · menú lateral desplegado */
+  --spacing-sidebar-collapsed: 4rem;                /* 64 · solo iconos */
+
+  --spacing-gutter: 1rem;                           /* 16 · margen lateral mínimo en móvil */
+  --spacing-page: 1.5rem;                           /* 24 · padding lateral de página */
+  --spacing-card: 1.5rem;                           /* 24 · padding interior de tarjeta md */
+  --spacing-block: 1.5rem;                          /* 24 · separación entre bloques en gestión */
+  --spacing-section: 2.25rem;                       /* 36 · separación entre secciones en gestión */
+
+  /* Anchos máximos canónicos. */
+  --container-modal-sm: 28rem;                      /* 448 · confirmaciones, acceso */
+  --container-modal-md: 36rem;                      /* 576 · edición rápida de tarifa o nodo */
+  --container-modal-lg: 48rem;                      /* 768 · comparador completo */
+  --container-drawer-sm: 24rem;                     /* 384 */
+  --container-drawer-md: 34rem;                     /* 544 · ficha de solicitud de alta / cobertura */
+  --container-drawer-lg: 44rem;                     /* 704 */
+  --container-form: 42rem;                          /* 672 · editor de catálogo y condiciones */
+  --container-prose: 42rem;                         /* 672 · páginas legales, permanencia cero y privacidad */
+
+  --container-gestion: 84rem;                       /* 1344 · panel /dashboard */
+  --container-web: 85rem;                           /* 1360 · el max-width actual de index.html para las 5 tarjetas */
+
+  /* ══ 9. ELEVACIÓN ════════════════════════════════════════════════════════
+     Sombras limpias teñidas de azul marino mediterráneo (rgb(7 33 64)), nunca negro puro. */
+  --shadow-card: 0 1px 3px 0 rgb(7 33 64 / 0.06), 0 1px 2px -1px rgb(7 33 64 / 0.05);
+  --shadow-raised: 0 12px 28px -8px rgb(7 33 64 / 0.16), 0 2px 6px -2px rgb(7 33 64 / 0.06);
+  --shadow-overlay: 0 24px 52px -12px rgb(7 33 64 / 0.34);
+
+  /* ══ 10. MOVIMIENTO ══════════════════════════════════════════════════════
+     Dos curvas: entrada ágil que asienta (`ease-out-expo`) y salida limpia (`ease-exit`).
+     La salida siempre dura menos que la entrada. */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+}
+
+/* ══ 11. TOKENS SIN NAMESPACE EN TAILWIND ══════════════════════════════════ */
+:root {
+  color-scheme: light;
+
+  /* Entradas */
+  --duration-fast: 150ms;         /* hover, focus, pestañas de tarifa, menús, tooltips */
+  --duration-base: 250ms;         /* modal, cambio de modo boceto/PVP, acordeón */
+  --duration-slow: 350ms;         /* drawer de solicitud, menú móvil */
+  --duration-reveal: 600ms;       /* SOLO web: aparición suave al hacer scroll */
+  /* Salidas: más cortas que su entrada, siempre */
+  --duration-exit: 100ms;         /* menú, tooltip */
+  --duration-exit-base: 150ms;    /* modal, lightbox, toast */
+  --duration-exit-slow: 240ms;    /* drawer */
+  /* Tiempos de espera */
+  --delay-tooltip: 400ms;
+  --duration-toast-life: 4000ms;
+
+  /* Escala de profundidad semántica (sustituye a z-index: 1000 / 1200 sueltos). */
+  --z-sticky: 10;            /* cabecera blanca fija de la web, thead de tablas */
+  --z-dropdown: 20;          /* filtros de municipio, menús contextuales */
+  --z-drawer: 30;            /* ficha de cobertura/alta, menú móvil, Editor de tokens */
+  --z-modal: 40;             /* visor fotográfico, confirmaciones */
+  --z-toast: 50;             /* avisos efímeros del panel */
+  --z-tooltip: 60;           /* ayudas de barra lateral contraída */
+}
+
+/* ══ 12. UTILIDADES DE TOKEN ═══════════════════════════════════════════════ */
+@utility duration-fast { transition-duration: var(--duration-fast); }
+@utility duration-base { transition-duration: var(--duration-base); }
+@utility duration-slow { transition-duration: var(--duration-slow); }
+@utility duration-exit { transition-duration: var(--duration-exit); }
+@utility duration-reveal { transition-duration: var(--duration-reveal); }
+
+@utility z-sticky { z-index: var(--z-sticky); }
+@utility z-dropdown { z-index: var(--z-dropdown); }
+@utility z-drawer { z-index: var(--z-drawer); }
+@utility z-modal { z-index: var(--z-modal); }
+@utility z-toast { z-index: var(--z-toast); }
+@utility z-tooltip { z-index: var(--z-tooltip); }
+
+/* ══ 13. DENSIDAD TÁCTIL ═══════════════════════════════════════════════════ */
+@media (pointer: coarse) {
+  :root {
+    --spacing-control-sm: var(--spacing-touch);
+    --spacing-control-md: var(--spacing-touch);
+  }
+}
+
+/* ══ 14. CONTEXTO: WEB PÚBLICA ═════════════════════════════════════════════
+   Se activa con <body data-context="web">. Amplía el aire entre secciones,
+   convierte el CTA principal en el turquesa característico de Menorca Connect
+   («Ver tarifas», «Comprobar cobertura»), fija el secundario en marino firme y
+   enciende el turquesa como acento en antetítulos («HECHA PARA MENORCA») y filetes. */
+[data-context="web"] {
+  --spacing-control-md: var(--spacing-control-lg);   /* controles de 48px: tacto directo en móvil y web */
+  --spacing-card: 1.75rem;                           /* 28px · tarjetas de tarifas amplias */
+  --spacing-block: 2.25rem;                          /* 36px */
+  --spacing-section: 5rem;                           /* 80px · respiración comercial clara */
+
+  --color-cta: var(--color-primary-solid);
+  --color-cta-fg: var(--color-primary-fg);
+  --color-cta-hover: var(--color-primary-hover);
+
+  --color-secondary: var(--color-mc-marino);
+  --color-secondary-hover: var(--color-mc-marino);
+  --color-secondary-hover-fg: var(--color-mc-blanco);
+  --color-accent: var(--color-primary);
+}
+
+/* ══ 15. ESQUEMA MARINO ════════════════════════════════════════════════════
+   El azul marino profundo (#072140) como superficie estructural: portada del
+   Faro de Favàritx, franja de confianza de 4 pilares, sección Empresas, pie de
+   la web y menú lateral de /dashboard. Se activa con [data-theme="dark"]. */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-page: var(--color-mc-marino);
+  --color-surface: color-mix(in oklab, var(--color-mc-brisa) 7%, var(--color-mc-marino));
+  --color-surface-sunken: color-mix(in oklab, black 32%, var(--color-mc-marino));
+  --color-surface-raised: color-mix(in oklab, var(--color-mc-brisa) 11%, var(--color-mc-marino));
+  --color-surface-hover: color-mix(in oklab, var(--color-mc-brisa) 15%, var(--color-mc-marino));
+  --color-surface-overlay: color-mix(in oklab, var(--color-mc-brisa) 8%, var(--color-mc-marino));
+  --color-overlay: color-mix(in oklab, black 68%, transparent);
+
+  --color-line: color-mix(in oklab, var(--color-mc-brisa) 16%, var(--color-mc-marino));
+  --color-line-strong: color-mix(in oklab, var(--color-mc-brisa) 48%, var(--color-mc-marino));       /* ≥3,6:1 */
+
+  --color-fg: var(--color-mc-brisa);                                                                 /* 15,0:1 */
+  --color-fg-muted: color-mix(in oklab, var(--color-mc-brisa) 68%, var(--color-mc-marino));          /* 6,6:1 */
+  --color-fg-subtle: color-mix(in oklab, var(--color-mc-brisa) 44%, var(--color-mc-marino));         /* decorativo */
+
+  /* Sobre marino oscuro los tonos profundos suben de luz para superar holgadamente 4,5:1. */
+  --color-primary: color-mix(in oklab, var(--color-mc-turquesa) 44%, white);                         /* 8,2:1 */
+  --color-success: color-mix(in oklab, var(--color-mc-verde) 46%, white);                            /* 7,9:1 */
+  --color-warning: var(--color-mc-ambar);                                                            /* 6,7:1 */
+  --color-danger: color-mix(in oklab, var(--color-mc-coral) 46%, white);                             /* 6,5:1 */
+
+  /* Todo lo declarado con var() en @theme se redeclara aquí para no heredar el valor de brisa. */
+  --color-link: var(--color-fg);
+  --color-link-hover: var(--color-primary);
+  --color-focus: var(--color-primary);
+  --color-cta: var(--color-primary-solid);
+  --color-cta-fg: var(--color-primary-fg);
+  --color-cta-hover: var(--color-primary-hover);
+  --color-secondary: var(--color-fg);
+  --color-secondary-hover: var(--color-fg);
+  --color-secondary-hover-fg: var(--color-page);
+  --color-accent: var(--color-fg-muted);
+
+  /* Logotipo invertido en pie marino, bloques oscuros y menú lateral: letras en brisa y marca en turquesa claro. */
+  --color-logo-mark: var(--color-primary);
+  --color-logo-text: var(--color-mc-brisa);
+
+  --shadow-card: 0 1px 2px 0 rgb(0 0 0 / 0.38);
+  --shadow-raised: 0 12px 32px -8px rgb(0 0 0 / 0.52);
+  --shadow-overlay: 0 24px 52px -12px rgb(0 0 0 / 0.66);
+}
+
+/* Un bloque marino DENTRO de la web (Hero del Faro de Favàritx, franja de confianza,
+   bloque Empresas y pie) mantiene el CTA turquesa de marca y el botón secundario
+   contorneado en brisa clara («Hablar por WhatsApp»), idéntico al boceto original. */
+[data-context="web"] [data-theme="dark"],
+[data-context="web"][data-theme="dark"] {
+  --color-cta: var(--color-primary-solid);
+  --color-cta-fg: var(--color-primary-fg);
+  --color-cta-hover: var(--color-primary-hover);
+  --color-secondary: var(--color-mc-brisa);
+  --color-secondary-hover: var(--color-mc-blanco);
+  --color-secondary-hover-fg: var(--color-mc-marino);
+  --color-accent: var(--color-primary);
+}
+
+/* ══ 16. CONTRATO DE MOVIMIENTO ════════════════════════════════════════════
+   Clases compartidas por Modal, Lightbox, Drawer, DropdownMenu, Tooltip, Toast,
+   menú lateral colapsable y revelados al hacer scroll, en la app y en la guía. */
+@layer components {
+
+  /* ── Modal, Lightbox y Drawer ── */
+  dialog.ds-dialog {
+    opacity: 0;
+    transition-property: opacity, display, overlay;
+    transition-duration: var(--duration-exit-base);
+    transition-timing-function: var(--ease-exit);
+    transition-behavior: allow-discrete;
+  }
+  dialog.ds-dialog[open] {
+    opacity: 1;
+    transition-duration: var(--duration-base);
+    transition-timing-function: var(--ease-out-expo);
+  }
+  @starting-style {
+    dialog.ds-dialog[open] { opacity: 0; }
+  }
+
+  .ds-surface {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+    transform-origin: center;
+    transition-property: opacity, transform;
+    transition-duration: var(--duration-exit-base);
+    transition-timing-function: var(--ease-exit);
+  }
+  dialog[open] .ds-surface {
+    opacity: 1;
+    transform: none;
+    transition-duration: var(--duration-base);
+    transition-timing-function: var(--ease-out-expo);
+  }
+  @starting-style {
+    dialog[open] .ds-surface { opacity: 0; transform: translateY(8px) scale(0.98); }
+  }
+
+  .ds-surface--right  { opacity: 1; transform: translateX(100%); transition-duration: var(--duration-exit-slow); }
+  .ds-surface--left   { opacity: 1; transform: translateX(-100%); transition-duration: var(--duration-exit-slow); }
+  .ds-surface--bottom { opacity: 1; transform: translateY(100%); transition-duration: var(--duration-exit-slow); }
+  dialog[open] .ds-surface--right,
+  dialog[open] .ds-surface--left,
+  dialog[open] .ds-surface--bottom { transform: none; transition-duration: var(--duration-slow); }
+  @starting-style {
+    dialog[open] .ds-surface--right  { transform: translateX(100%); }
+    dialog[open] .ds-surface--left   { transform: translateX(-100%); }
+    dialog[open] .ds-surface--bottom { transform: translateY(100%); }
+  }
+
+  /* ── Menús desplegables y filtros ── */
+  .ds-popover {
+    display: none;
+    opacity: 0;
+    transform: scale(0.97) translateY(-4px);
+    transform-origin: var(--ds-origin, top right);
+    transition-property: opacity, transform, display;
+    transition-duration: var(--duration-exit);
+    transition-timing-function: var(--ease-exit);
+    transition-behavior: allow-discrete;
+  }
+  .ds-popover[data-open] {
+    display: block;
+    opacity: 1;
+    transform: none;
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-out-expo);
+  }
+  @starting-style {
+    .ds-popover[data-open] { opacity: 0; transform: scale(0.97) translateY(-4px); }
+  }
+
+  /* ── Tooltip ── */
+  .ds-tooltip {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(2px);
+    transition-property: opacity, transform, visibility;
+    transition-duration: var(--duration-exit);
+    transition-timing-function: var(--ease-exit);
+    transition-behavior: allow-discrete;
+  }
+  .ds-tooltip-anchor:hover .ds-tooltip,
+  .ds-tooltip-anchor:focus-within .ds-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition-delay: var(--delay-tooltip);
+    transition-duration: var(--duration-fast);
+    transition-timing-function: var(--ease-out-expo);
+  }
+
+  /* ── Menú lateral colapsable (/dashboard) ── */
+  .ds-sidebar {
+    width: var(--spacing-sidebar);
+    transition: width var(--duration-base) var(--ease-out-expo);
+  }
+  .ds-sidebar[data-collapsed] { width: var(--spacing-sidebar-collapsed); }
+
+  .ds-sidebar-label {
+    max-width: 12rem;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 1;
+    transition: opacity var(--duration-fast) var(--ease-out-expo) var(--duration-fast),
+                max-width var(--duration-base) var(--ease-out-expo);
+  }
+  .ds-sidebar-item { justify-content: flex-start; padding-inline: calc(var(--spacing) * 3); }
+  .ds-sidebar[data-collapsed] .ds-sidebar-item { justify-content: center; padding-inline: 0; }
+  .ds-sidebar[data-collapsed] .ds-sidebar-expanded-only { display: none; }
+  .ds-sidebar:not([data-collapsed]) .ds-sidebar-collapsed-only { display: none; }
+  .ds-sidebar[data-collapsed] .ds-sidebar-label {
+    max-width: 0;
+    opacity: 0;
+    transition: opacity var(--duration-exit) var(--ease-exit),
+                max-width var(--duration-base) var(--ease-exit);
+  }
+  .ds-sidebar-toggle-hint {
+    opacity: 0;
+    transition: opacity var(--duration-fast) var(--ease-out-expo);
+  }
+  .ds-sidebar-toggle:hover .ds-sidebar-toggle-hint,
+  .ds-sidebar-toggle:focus-visible .ds-sidebar-toggle-hint { opacity: 1; }
+  .ds-sidebar[data-collapsed] .ds-sidebar-toggle-hint { display: none; }
+
+  /* ── Toast ── */
+  .ds-toast {
+    transition-property: opacity, transform;
+    transition-duration: var(--duration-base);
+    transition-timing-function: var(--ease-out-expo);
+  }
+  @starting-style {
+    .ds-toast { opacity: 0; transform: translateY(12px); }
+  }
+  .ds-toast[data-leaving] {
+    opacity: 0;
+    transform: translateY(8px);
+    transition-duration: var(--duration-exit-base);
+    transition-timing-function: var(--ease-exit);
+  }
+
+  /* ── Revelado al hacer scroll (SOLO web) ── */
+  .ds-reveal[data-reveal-ready] {
+    opacity: 0;
+    transform: translateY(14px);
+    transition-property: opacity, transform;
+    transition-duration: var(--duration-reveal);
+    transition-timing-function: var(--ease-out-expo);
+  }
+  .ds-reveal[data-reveal-ready][data-revealed] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ══ 17. BASE ══════════════════════════════════════════════════════════════ */
+@layer base {
+  body {
+    background-color: var(--color-page);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+  }
+
+  [data-theme] {
+    background-color: var(--color-page);
+    color: var(--color-fg);
+  }
+
+  a { color: var(--color-link); }
+  a:hover { color: var(--color-link-hover); }
+
+  /* Sin cursiva sintética: los titulares, precios y eslóganes se componen en redonda. */
+  em, i, cite, blockquote { font-style: normal; font-synthesis: none; }
+
+  html:has(dialog[open]) { overflow: hidden; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+    }
+    .ds-surface, .ds-surface--right, .ds-surface--left, .ds-surface--bottom,
+    .ds-popover, .ds-tooltip, .ds-toast, .ds-reveal,
+    dialog[open] .ds-surface, .ds-popover[data-open], .ds-toast[data-leaving] {
+      transform: none !important;
+    }
+    .ds-tooltip { transition-delay: 0ms !important; }
+    .ds-sidebar, .ds-sidebar-label { transition-duration: 0.01ms !important; }
+  }
+
+  [data-reduced-motion] *, [data-reduced-motion] ::before, [data-reduced-motion] ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  [data-reduced-motion] .ds-surface, [data-reduced-motion] .ds-surface--right,
+  [data-reduced-motion] .ds-surface--left, [data-reduced-motion] .ds-surface--bottom,
+  [data-reduced-motion] .ds-popover, [data-reduced-motion] .ds-tooltip,
+  [data-reduced-motion] .ds-toast, [data-reduced-motion] .ds-reveal {
+    transform: none !important;
+  }
+  [data-reduced-motion] .ds-tooltip { transition-delay: 0ms !important; }
+  [data-reduced-motion] .ds-sidebar,
+  [data-reduced-motion] .ds-sidebar-label { transition-duration: 0.01ms !important; }
+}

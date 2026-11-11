@@ -1,0 +1,567 @@
+{
+  "_comment": [
+    "FUENTE ÚNICA de las decisiones ESTRUCTURADAS de Menorca Connect: lo que no cabe en CSS",
+    "pero tampoco debe escribirse dos veces en prosa.",
+    "",
+    "IDIOMA DEL SISTEMA: todo en CASTELLANO, respetando la toponimia propia menorquina (Maó, Ciutadella, Alaior, Es Mercadal, Ferreries, Es Castell, Sant Lluís, Es Migjorn Gran).",
+    "",
+    "Lo consumen:",
+    "  · guia-visual.html            → bloque MANIFEST:BEGIN/END (lo inyecta sync-design-system.mjs)",
+    "  · MENORCA_CONNECT_DESIGN.md   → tablas entre marcadores GEN:<clave> (mismo script)",
+    "  · validate-design-system.mjs  → comprueba coherencia consigo mismo y con tokens.css",
+    "",
+    "Al cambiar algo: `node sync-design-system.mjs` y anotarlo en el registro de MENORCA_CONNECT_DESIGN.md."
+  ],
+  "project": {
+    "name": "Menorca Connect",
+    "shortName": "MC",
+    "tagline": "Conectados a tu isla · Fibra óptica, Móvil 5G y TV en Menorca",
+    "locale": "es",
+    "locales": ["es"],
+    "version": "0.1",
+    "status": "propuesta",
+    "statusNote": "Solo guía: la portada comercial actual (index.html + styles.css + app.js) está desplegada en Vercel y el panel /dashboard está planificado; ninguno importa todavía tokens.css."
+  },
+  "styleProfile": {
+    "caracter": [
+      "Cercano, insular y técnicamente fiable: una operadora hecha en Menorca para Menorca, alejada de las telecos agresivas con letra pequeña y centralitas impersonales.",
+      "Luminoso y directo: el Faro de Favàritx, la brisa clara de la costa y el azul marino profundo del Mediterráneo enmarcan precios definitivos con IVA incluido.",
+      "Transparencia radical: lo que ves es lo que pagas, sin permanencia, con técnicos propios en los 8 municipios y atención real por WhatsApp o en tienda.",
+      "La web pública convierte consultas de cobertura y tarifas sin fricción; el panel /dashboard coordina altas, portabilidades, instalaciones en 24-48h y catálogo con la misma claridad."
+    ],
+    "jerarquia": [
+      "Una acción principal por bloque: en la web es el botón turquesa («Ver tarifas», «Comprobar cobertura»); en el panel operativo es marino profundo («Guardar tarifa», «Agendar técnico»).",
+      "Titulares en Montserrat (700–800) y cifras con tabular-nums para que velocidades (300 Mb, 600 Mb, 1 Gb) y cuotas mensuales (24,90 €/mes) se comparen de un vistazo.",
+      "Lo cerrado o histórico se apaga (variante quiet): solicitudes archivadas o campañas retiradas."
+    ],
+    "geometria": [
+      "Geometría cercana y técnica fiel al boceto original: 8px en controles y botones, 14px en las 5 tarjetas de servicio y fichas de tarifa, 18px en paneles, modales y drawers.",
+      "Las 5 tarjetas de categoría cabalgan limpiamente entre la fotografía del Faro de Favàritx y la franja marina de confianza.",
+      "Un contenedor nunca tiene menos radio que su contenido (control-inner 6px dentro de control 8px).",
+      "Píldora completa reservada a badges de estado, pestañas de filtro de tarifa y avatares."
+    ],
+    "superficies": [
+      "Lienzo general en brisa insular (#F3F7F9), fresco y luminoso, nunca gris industrial frío.",
+      "Tarjetas de tarifas, comprobador de cobertura y tablas sobre blanco puro (#FFFFFF) con filete sutil teñido de marino.",
+      "Bandas alternas, SubNav y conmutadores en surface-sunken (brisa con 5% de marino).",
+      "El azul marino profundo (#072140) es superficie estructural de marca: portada con velo bg-scrim, franja de 4 compromisos, bloque Empresas, pie de página y menú lateral de /dashboard (data-theme=\"dark\")."
+    ],
+    "tipografia": [
+      "Dos familias coordinadas: Plus Jakarta Sans para lectura, tablas y formularios; Montserrat (700–800) para titulares, precios y velocidades. Sin monoespaciada y sin cursiva sintética.",
+      "Precios (32,90 €), velocidades (1 Gb, 600 Mb), datos móviles (80 GB) y teléfonos (671 123 456) siempre con tabular-nums.",
+      "Antetítulos breves en versalitas turquesa con tracking abierto («HECHA PARA MENORCA», «TARIFAS CLARAS»).",
+      "Nombres de tarifa y secciones en frase natural («Combo Isla 600 Mb + 50 GB», «Una compañía local, para una isla única.»)."
+    ],
+    "color": [
+      "Marino (#072140) = tinta principal, franja de confianza, pie, menú lateral y CTA operativo · Brisa (#F3F7F9) = lienzo · Blanco (#FFFFFF) = tarjetas.",
+      "Turquesa Menorca Connect (#0A7275) = acción primaria, anillo de foco, CTA comercial web, ondas del isotipo y palabra CONNECT (calibrado AA ≥5,3:1).",
+      "Verde cobertura (#2D7A1F) = fibra activa / 5G · Ámbar faro (#E5960A) = en portabilidad / modo boceto · Coral (#B42929) = incidencia / eliminar.",
+      "Paleta categórica (cat-1..4) = identidad de las cuatro líneas comerciales (Fibra, Móvil 5G, Menorca TV, Combos) en analítica y fichas comparativas.",
+      "El acceso a WhatsApp usa turquesa de marca o botón secundario marino/brisa con contraste AA verificado (nunca verde #25D366 con texto blanco a 2,1:1)."
+    ],
+    "densidad": [
+      "Gestión (/dashboard): controles de 40px por defecto y 32px en barras de filtro de escritorio.",
+      "Web pública: los mismos componentes pasan a 48px de alto y secciones de 80px de aire vertical.",
+      "La diferencia entre panel operativo y escaparate comercial vive en [data-context=\"web\"], sin duplicar componentes."
+    ],
+    "movimiento": [
+      "Dos curvas: entrada ágil que asienta (ease-out-expo) y salida limpia que recoge (ease-exit).",
+      "La salida siempre dura menos que la entrada.",
+      "Cambio instantáneo entre pestañas de tarifa y entre Modo Boceto (XX,XX €) y PVP real sin saltos de altura.",
+      "Respeto íntegro a prefers-reduced-motion en revelados al hacer scroll, diálogos y skeletons."
+    ],
+    "datos": [
+      "Precios siempre con IVA incluido explícito y unidad «/mes» alineada en tabular-nums.",
+      "En analítica del panel: barras desde cero, un solo eje y series cat-1..4 en el orden fijo Fibra · Móvil · TV · Combos.",
+      "Ningún estado de solicitud, instalación o cobertura depende solo del color: siempre color + icono + etiqueta."
+    ],
+    "neverDo": [
+      "Asteriscos con letra pequeña, cuotas promocionales engañosas («3 meses y luego sube») o cargos ocultos de instalación.",
+      "Contadores de urgencia falsos («¡Oferta termina en 04:59!») o pop-ups intrusivos de captación.",
+      "Texto blanco sobre verde WhatsApp (#25D366) o sobre turquesa claro sin verificar ≥4,5:1.",
+      "Fotografía sin el velo plano bg-scrim cuando lleva titular blanco encima.",
+      "Dos botones principales compitiendo en la misma tarjeta o cabecera.",
+      "Grises neutros fríos de Tailwind (gray-*, slate-*) desconectados del azul marino menorquín.",
+      "Cursiva sintética o tipografía monoespaciada para precios, velocidades o teléfonos.",
+      "Traducir o deformar topónimos oficiales menorquines (Maó, Ciutadella, Es Mercadal, Es Migjorn Gran).",
+      "Valores arbitrarios sueltos en producción: z-index: 1000, hex directos fuera de tokens.css o degradados improvisados."
+    ]
+  },
+  "contexts": [
+    {
+      "id": "gestion",
+      "label": "Panel de gestión",
+      "routes": "/dashboard/** · plataforma privada: resumen, altas y cobertura, catálogo de tarifas, instalaciones FTTH, cobertura insular, empresas y analítica",
+      "character": "Operativo, ágil y nítido sobre brisa insular, menú lateral marino profundo y CTA institucional en marino",
+      "isDefault": true
+    },
+    {
+      "id": "web",
+      "label": "Web pública",
+      "routes": "/, /#tarifas, /#cobertura, /#empresas, /#contacto · escaparate comercial para hogares, segundas residencias y negocios de Menorca",
+      "character": "Luminosa, cercana y directa: cabecera blanca limpia, Hero del Faro de Favàritx con 5 tarjetas de servicio, franja marina de confianza y CTA turquesa",
+      "selector": "[data-context=\"web\"]"
+    }
+  ],
+  "modules": [
+    {
+      "id": "resumen",
+      "label": "Resumen",
+      "icon": "layout-dashboard",
+      "templates": ["metrics"],
+      "views": ["list"],
+      "statusModel": null,
+      "domainComponents": ["TrustBar"]
+    },
+    {
+      "id": "solicitudes",
+      "label": "Altas y cobertura",
+      "icon": "inbox",
+      "templates": ["list", "detail-drawer", "empty"],
+      "views": ["table", "list"],
+      "statusModel": "solicitudes",
+      "domainComponents": ["StatusBadge", "InquiryRow", "MunicipalityBadge"]
+    },
+    {
+      "id": "tarifas",
+      "label": "Catálogo de tarifas",
+      "icon": "tag",
+      "templates": ["long-form", "list"],
+      "views": ["cards", "table"],
+      "statusModel": "tarifas",
+      "domainComponents": ["ServiceCategoryCard", "PlanCard", "PriceModeSwitch", "StatusBadge"]
+    },
+    {
+      "id": "instalaciones",
+      "label": "Instalaciones y red",
+      "icon": "router",
+      "templates": ["list", "detail-drawer"],
+      "views": ["table", "calendar"],
+      "statusModel": "instalaciones",
+      "domainComponents": ["StatusBadge", "MunicipalityBadge"]
+    },
+    {
+      "id": "cobertura",
+      "label": "Cobertura insular",
+      "icon": "map-pin",
+      "templates": ["list", "empty"],
+      "views": ["cards", "table"],
+      "statusModel": "cobertura",
+      "domainComponents": ["CoverageChecker", "MunicipalityBadge", "StatusBadge"]
+    },
+    {
+      "id": "empresas",
+      "label": "Empresas y hostelería",
+      "icon": "building-2",
+      "templates": ["list", "long-form"],
+      "views": ["table", "list"],
+      "statusModel": "solicitudes",
+      "domainComponents": ["BusinessQuoteCard", "StatusBadge"]
+    },
+    {
+      "id": "analitica",
+      "label": "Analítica",
+      "icon": "bar-chart-3",
+      "templates": ["metrics"],
+      "views": ["list", "table"],
+      "statusModel": null,
+      "domainComponents": ["CategoryLegend"]
+    }
+  ],
+  "appShell": {
+    "_comment": "Contrato del marco privado /dashboard para el equipo local de Menorca Connect.",
+    "context": "gestion",
+    "navigation": [
+      { "id": "resumen", "label": "Resumen", "icon": "layout-dashboard", "route": "/dashboard" },
+      { "id": "solicitudes", "label": "Altas y cobertura", "icon": "inbox", "route": "/dashboard/solicitudes", "children": ["Pendientes", "En portabilidad", "Activas", "Archivadas"] },
+      { "id": "tarifas", "label": "Catálogo de tarifas", "icon": "tag", "route": "/dashboard/tarifas", "children": ["Combos", "Ofertas Fibra+Móvil+TV", "Fibra Óptica", "Móvil 5G", "Menorca TV"] },
+      { "id": "instalaciones", "label": "Instalaciones y red", "icon": "router", "route": "/dashboard/instalaciones", "children": ["Agenda hoy", "Técnicos en ruta", "Completadas"] },
+      { "id": "cobertura", "label": "Cobertura insular", "icon": "map-pin", "route": "/dashboard/cobertura", "children": ["8 municipios", "Urbanizaciones", "Nodos FTTH"] },
+      { "id": "empresas", "label": "Empresas y hostelería", "icon": "building-2", "route": "/dashboard/empresas", "children": ["Comercios y pymes", "Hoteles y agroturismos", "Temporada"] },
+      { "id": "analitica", "label": "Analítica", "icon": "bar-chart-3", "route": "/dashboard/analitica", "children": ["Altas por producto", "Municipios", "Canal WhatsApp"] }
+    ],
+    "navigationRule": "Navegación exclusiva del panel privado /dashboard. La web pública mantiene su cabecera superior blanca con logotipo Menorca Connect, enlaces directos a servicios y botón turquesa «WhatsApp 671 123 456». Al pie del menú lateral viven «Ver web pública» y «Cerrar sesión».",
+    "widths": {
+      "expanded": "15,5rem (248px)",
+      "collapsed": "4rem (64px)"
+    },
+    "collapse": [
+      { "aspecto": "Superficie", "regla": "El menú lateral usa el esquema marino (data-theme=\"dark\") conectando con la franja de confianza y el pie de la web, mientras el área operativa descansa sobre brisa (#F3F7F9)." },
+      { "aspecto": "Disparador", "regla": "El isotipo de Menorca Connect (el doble pico 'M' con ondas de señal extraído de logo-menorca-connect.svg) con aria-expanded y etiqueta dinámica («Contraer el menú» / «Desplegar el menú»)." },
+      { "aspecto": "Descubrimiento", "regla": "Al pasar el ratón o enfocar el isotipo aparece el icono panel-left." },
+      { "aspecto": "Etiquetas", "regla": "Se funden en 100 ms antes de que la barra reduzca su ancho en 250 ms." },
+      { "aspecto": "Estado activo", "regla": "Fondo surface-hover + filete vertical turquesa claro a la izquierda + aria-current=\"page\"." },
+      { "aspecto": "Contadores", "regla": "Desplegado muestra el número de solicitudes de alta pendientes con tabular-nums; contraído muestra un punto turquesa sobre el icono." },
+      { "aspecto": "Tooltip", "regla": "En modo contraído cada icono despliega su tooltip con el nombre del módulo." },
+      { "aspecto": "Memoria", "regla": "El estado contraído/desplegado persiste en localStorage." },
+      { "aspecto": "Móvil", "regla": "Por debajo de 1024px el menú pasa a Drawer lateral desde el botón menu; nunca queda una tira fija estrecha en móvil." }
+    ]
+  },
+  "moduleContract": {
+    "_comment": "Cada módulo de /dashboard o sección de la web aporta su dominio sin alterar los cimientos visuales.",
+    "mayAdd": [
+      "un icono registrado en iconDictionary",
+      "una fórmula del vocabulario común",
+      "estados propios mapeados a neutral, primary, success, warning o danger",
+      "componentes de dominio documentados en domainComponents",
+      "combinaciones de plantillas canónicas de screenTemplates",
+      "gráficos con las series cat-1..4 en el orden fijo Fibra · Móvil · TV · Combos"
+    ],
+    "mayNotRedefine": [
+      "Button",
+      "IconButton",
+      "Field",
+      "Card",
+      "Modal",
+      "Drawer",
+      "Lightbox",
+      "escala tipográfica",
+      "radios de marca",
+      "escala de espaciado",
+      "densidad",
+      "colores semánticos",
+      "estructura de navegación",
+      "diccionario de iconos",
+      "vocabulario"
+    ]
+  },
+  "views": [
+    { "id": "list", "icon": "list", "label": "Vista de lista", "note": "Resumen de módulos, bloques editables y solicitudes compactas" },
+    { "id": "table", "icon": "table-2", "label": "Vista de tabla", "note": "Bandeja de altas y cobertura, tarifas y despliegues por municipio" },
+    { "id": "cards", "icon": "layout-grid", "label": "Vista de fichas", "note": "Catálogo visual de tarifas y tarjetas de los 8 municipios" },
+    { "id": "calendar", "icon": "calendar-days", "label": "Vista de agenda", "note": "Planificación diaria de técnicos propios e instalaciones en 24-48h" }
+  ],
+  "statusModels": {
+    "solicitudes": {
+      "label": "Estados de alta y consulta de cobertura",
+      "rule": "turquesa = nueva por validar · ámbar = portabilidad en curso · verde = línea activa · apagado = archivada",
+      "groups": [
+        {
+          "id": "bandeja",
+          "label": "Solicitudes desde web y WhatsApp (671 123 456)",
+          "note": "Comprobaciones de cobertura y altas entrantes en los 8 municipios y urbanizaciones",
+          "items": [
+            { "id": "nueva", "label": "Nueva", "tone": "primary", "variant": "soft", "icon": "mail", "meaning": "Recibida desde el comprobador o WhatsApp; pendiente de verificar CTO/cobertura" },
+            { "id": "portabilidad", "label": "En portabilidad", "tone": "warning", "variant": "soft", "icon": "clock", "meaning": "Ventana de cambio de operador o cita de instalación en curso (24-48h)" },
+            { "id": "activa", "label": "Línea activa", "tone": "success", "variant": "soft", "icon": "circle-check", "meaning": "Fibra o línea 5G operativa y facturando sin permanencia" },
+            { "id": "archivada", "label": "Archivada", "tone": "neutral", "variant": "quiet", "icon": "archive", "meaning": "Consulta resuelta o descartada; no reclama acción" }
+          ]
+        }
+      ],
+      "hiddenStates": ["whatsapp_handoff"],
+      "hiddenNote": "En la web estática actual el formulario construye un enlace directo wa.me con municipio y dirección; al conectar /dashboard se registrará además en base de datos con estos cuatro estados."
+    },
+    "instalaciones": {
+      "label": "Estados de instalación técnica FTTH",
+      "rule": "turquesa = cita agendada · ámbar = técnico en ruta · verde = fibra instalada · coral = incidencia de acceso",
+      "groups": [
+        {
+          "id": "agenda",
+          "label": "Órdenes de equipo técnico propio en Menorca",
+          "note": "Instalación de acometida óptica, ONT y Router Wi-Fi 6",
+          "items": [
+            { "id": "programada", "label": "Cita agendada", "tone": "primary", "variant": "soft", "icon": "calendar", "meaning": "Franja confirmada con el titular en Maó, Ciutadella o resto de municipios" },
+            { "id": "en_ruta", "label": "Técnico en ruta", "tone": "warning", "variant": "soft", "icon": "wrench", "meaning": "Instalador local desplazándose o realizando tendido en fachada/conducto" },
+            { "id": "instalada", "label": "Fibra instalada", "tone": "success", "variant": "soft", "icon": "wifi", "meaning": "Velocidad simétrica verificada y Wi-Fi 6 operativo" },
+            { "id": "incidencia", "label": "Incidencia acceso", "tone": "danger", "variant": "soft", "icon": "triangle-alert", "meaning": "Conducto obstruido o permiso de comunidad pendiente; requiere reprogramar" }
+          ]
+        }
+      ],
+      "hiddenStates": [],
+      "hiddenNote": null
+    },
+    "tarifas": {
+      "label": "Estados del catálogo de tarifas",
+      "rule": "verde = PVP publicado · ámbar = modo boceto XX,XX € · neutro = borrador interno",
+      "groups": [
+        {
+          "id": "catalogo",
+          "label": "Visibilidad comercial y modo presentación",
+          "note": "Recoge el conmutador real de index.html entre modo boceto (XX,XX €) y precios definitivos con IVA",
+          "items": [
+            { "id": "publicada", "label": "PVP publicado", "tone": "success", "variant": "soft", "icon": "eye", "meaning": "Visible en la web con cuota definitiva en euros IVA incluido" },
+            { "id": "boceto", "label": "Modo boceto", "tone": "warning", "variant": "soft", "icon": "eye-off", "meaning": "Muestra marcador XX,XX €/mes para presentaciones previas al cierre comercial" },
+            { "id": "borrador", "label": "Borrador", "tone": "neutral", "variant": "soft", "icon": "pencil-line", "meaning": "Tarifa de campaña o temporada en preparación interna" }
+          ]
+        }
+      ],
+      "hiddenStates": [],
+      "hiddenNote": null
+    },
+    "cobertura": {
+      "label": "Estados de huella y cobertura insular",
+      "rule": "verde = fibra 1 Gb directa · ámbar = en despliegue · turquesa = cobertura 5G",
+      "groups": [
+        {
+          "id": "red",
+          "label": "Disponibilidad por municipio y urbanización",
+          "note": "Cubre los 8 municipios de Menorca y núcleos costeros (Fornells, Son Bou, Binibèquer, Cala en Blanes…)",
+          "items": [
+            { "id": "ftth_activa", "label": "Fibra 1 Gb directa", "tone": "success", "variant": "soft", "icon": "zap", "meaning": "CTO activa con alta e instalación disponible en 24-48h" },
+            { "id": "despliegue", "label": "En despliegue", "tone": "warning", "variant": "soft", "icon": "gauge", "meaning": "Ampliación de red en curso; permite pre-reserva sin compromiso" },
+            { "id": "solo_5g", "label": "Cobertura 5G", "tone": "primary", "variant": "soft", "icon": "smartphone", "meaning": "Núcleo o finca rústica cubierta mediante red móvil 5G de alta capacidad" }
+          ]
+        }
+      ],
+      "hiddenStates": [],
+      "hiddenNote": null
+    }
+  },
+  "iconDictionary": [
+    {
+      "group": "Acciones",
+      "items": [
+        { "icon": "search", "concept": "Buscar", "label": "Buscar…", "legacy": null },
+        { "icon": "list-filter", "concept": "Filtrar", "label": "Filtros", "legacy": null },
+        { "icon": "funnel-x", "concept": "Quitar filtros", "label": "Quitar filtros", "legacy": null },
+        { "icon": "plus", "concept": "Crear · dar de alta", "label": "Nueva tarifa", "legacy": null },
+        { "icon": "save", "concept": "Guardar", "label": "Guardar cambios", "legacy": null },
+        { "icon": "trash-2", "concept": "Eliminar", "label": "Eliminar", "legacy": null },
+        { "icon": "copy", "concept": "Copiar", "label": "Copiar cambios", "legacy": null },
+        { "icon": "upload", "concept": "Subir documento", "label": "Subir factura / plano", "legacy": null },
+        { "icon": "download", "concept": "Descargar · exportar", "label": "Exportar CSV", "legacy": null },
+        { "icon": "send", "concept": "Enviar solicitud", "label": "Comprobar cobertura", "legacy": null },
+        { "icon": "reply", "concept": "Responder al cliente", "label": "Responder por WhatsApp", "legacy": null },
+        { "icon": "archive", "concept": "Archivar · archivada", "label": "Archivar", "legacy": null },
+        { "icon": "rotate-ccw", "concept": "Restablecer · deshacer", "label": "Restablecer", "legacy": null },
+        { "icon": "refresh-cw", "concept": "Reintentar", "label": "Volver a intentarlo", "legacy": null },
+        { "icon": "sliders-horizontal", "concept": "Ajustar parámetros · editor de tokens", "label": "Editor de tokens", "legacy": null },
+        { "icon": "ellipsis", "concept": "Más acciones", "label": "Más acciones", "legacy": null },
+        { "icon": "external-link", "concept": "Abrir web pública", "label": "Ver web pública", "legacy": null },
+        { "icon": "log-out", "concept": "Cerrar sesión", "label": "Cerrar sesión", "legacy": null },
+        { "icon": "pencil-line", "concept": "Editar · borrador", "label": "Editar tarifa", "legacy": null }
+      ]
+    },
+    {
+      "group": "Navegación y despliegue",
+      "items": [
+        { "icon": "chevron-down", "concept": "Desplegar", "label": "— (aria-expanded)", "legacy": null },
+        { "icon": "chevron-up", "concept": "Plegar", "label": "— (aria-expanded)", "legacy": null },
+        { "icon": "chevron-right", "concept": "Siguiente · ruta", "label": "Siguiente", "legacy": null },
+        { "icon": "chevron-left", "concept": "Anterior", "label": "Anterior", "legacy": null },
+        { "icon": "chevrons-left", "concept": "Primera página", "label": "Primera", "legacy": null },
+        { "icon": "chevrons-right", "concept": "Última página", "label": "Última", "legacy": null },
+        { "icon": "arrow-right", "concept": "Ver detalle · ir a tarifas", "label": "Ver tarifas", "legacy": null },
+        { "icon": "arrow-left", "concept": "Volver", "label": "Volver al inicio", "legacy": null },
+        { "icon": "arrow-up-down", "concept": "Ordenar (sin orden)", "label": "— (aria-sort)", "legacy": null },
+        { "icon": "arrow-up", "concept": "Orden ascendente", "label": "— (aria-sort)", "legacy": null },
+        { "icon": "arrow-down", "concept": "Orden descendente", "label": "— (aria-sort)", "legacy": null },
+        { "icon": "maximize-2", "concept": "Ampliar imagen (Lightbox)", "label": "Ampliar fotografía", "legacy": null },
+        { "icon": "menu", "concept": "Abrir menú móvil", "label": "Abrir menú", "legacy": "mobileMenuBtn" },
+        { "icon": "panel-left", "concept": "Contraer o desplegar menú lateral", "label": "Contraer el menú", "legacy": null },
+        { "icon": "x", "concept": "Cerrar · limpiar", "label": "Cerrar", "legacy": null }
+      ]
+    },
+    {
+      "group": "Estado y operaciones técnicas",
+      "items": [
+        { "icon": "circle-check", "concept": "Línea activa · completado", "label": "Línea activa", "legacy": null },
+        { "icon": "clock", "concept": "En portabilidad · pendiente", "label": "En portabilidad", "legacy": null },
+        { "icon": "triangle-alert", "concept": "Incidencia · aviso", "label": "Incidencia", "legacy": null },
+        { "icon": "circle-alert", "concept": "Error de carga o validación", "label": "Error", "legacy": null },
+        { "icon": "info", "concept": "Información", "label": "Información", "legacy": null },
+        { "icon": "lock", "concept": "Acceso privado · sin permisos", "label": "Acceso restringido", "legacy": null },
+        { "icon": "loader-circle", "concept": "Cargando", "label": "Cargando…", "legacy": null },
+        { "icon": "check", "concept": "Incluido en tarifa · seleccionado", "label": "Incluido", "legacy": "check-icon ✓" },
+        { "icon": "minus", "concept": "Selección parcial", "label": "—", "legacy": null },
+        { "icon": "mail", "concept": "Solicitud nueva · correo", "label": "Nueva", "legacy": null },
+        { "icon": "eye", "concept": "PVP publicado · visible", "label": "PVP publicado", "legacy": null },
+        { "icon": "eye-off", "concept": "Modo boceto XX,XX € · oculto", "label": "Modo boceto", "legacy": null },
+        { "icon": "calendar", "concept": "Cita técnica agendada", "label": "Cita agendada", "legacy": null },
+        { "icon": "wrench", "concept": "Técnico propio en ruta", "label": "Técnico en ruta", "legacy": null }
+      ]
+    },
+    {
+      "group": "Servicios de telecomunicaciones y compromisos de Menorca Connect",
+      "items": [
+        { "icon": "wifi", "concept": "Fibra óptica simétrica · instalada", "label": "Fibra Óptica", "legacy": "SVG wifi inline" },
+        { "icon": "smartphone", "concept": "Móvil 5G · cobertura 5G", "label": "Móvil 5G", "legacy": "SVG mobile inline" },
+        { "icon": "tv", "concept": "Menorca TV (+80 canales)", "label": "Menorca TV", "legacy": "SVG tv inline" },
+        { "icon": "layers", "concept": "Combos Fibra + Móvil", "label": "Fibra + Móvil", "legacy": "SVG home+signal inline" },
+        { "icon": "zap", "concept": "Velocidad hasta 1 Gb · FTTH directa", "label": "Hasta 1 Gb", "legacy": "SVG bolt inline" },
+        { "icon": "users", "concept": "Atención cercana y equipo local", "label": "Atención cercana", "legacy": "trust-icon people" },
+        { "icon": "badge-euro", "concept": "Precios claros sin letra pequeña", "label": "Precios claros", "legacy": "trust-icon tag" },
+        { "icon": "gauge", "concept": "Conexión rápida · red en despliegue", "label": "Conexión rápida", "legacy": "trust-icon speed" },
+        { "icon": "shield-check", "concept": "Sin permanencia", "label": "Sin permanencia", "legacy": "trust-icon shield" },
+        { "icon": "sun", "concept": "Modo vacaciones / segunda residencia", "label": "Segunda residencia", "legacy": null }
+      ]
+    },
+    {
+      "group": "Contacto directo e isla",
+      "items": [
+        { "icon": "phone", "concept": "Teléfono local de atención", "label": "671 123 456", "legacy": null },
+        { "icon": "message-circle", "concept": "Atención directa por WhatsApp", "label": "Hablar por WhatsApp", "legacy": "SVG wa inline" },
+        { "icon": "map-pin", "concept": "Cobertura insular (8 municipios)", "label": "Cobertura en Menorca", "legacy": null }
+      ]
+    },
+    {
+      "group": "Reservados para los módulos de /dashboard y documentación",
+      "items": [
+        { "icon": "layout-dashboard", "concept": "Resumen operativo", "label": "Resumen", "legacy": null },
+        { "icon": "inbox", "concept": "Bandeja de altas y cobertura", "label": "Altas y cobertura", "legacy": null },
+        { "icon": "tag", "concept": "Catálogo de tarifas", "label": "Catálogo de tarifas", "legacy": null },
+        { "icon": "router", "concept": "Instalaciones FTTH y equipos Wi-Fi 6", "label": "Instalaciones y red", "legacy": null },
+        { "icon": "building-2", "concept": "Empresas, comercios y hostelería", "label": "Empresas y hostelería", "legacy": null },
+        { "icon": "bar-chart-3", "concept": "Analítica comercial", "label": "Analítica", "legacy": null },
+        { "icon": "file-text", "concept": "Condiciones legales y contrato", "label": "Condiciones legales", "legacy": null },
+        { "icon": "book-open", "concept": "Guía visual del sistema de diseño", "label": "Guía visual", "legacy": null }
+      ]
+    }
+  ],
+  "vocabulary": [
+    { "case": "Tono de marca", "formula": "Cercano, claro y 100 % local: «Conectados a tu isla. Fibra, móvil y TV al mejor precio, con atención cercana y local.» Sin jerga críptica ni letra pequeña" },
+    { "case": "Tratamiento", "formula": "Segunda persona singular cercana («Tu fibra en Menorca», «Tú eliges cuándo y cómo», «Habla con personas de aquí, no con robots»)" },
+    { "case": "Botón de acción", "formula": "Verbo directo + objeto claro: «Ver tarifas», «Comprobar cobertura», «Hablar por WhatsApp», «Guardar cambios»" },
+    { "case": "CTA principal web", "formula": "«Ver tarifas» (portada) · «Lo quiero» (ficha de tarifa) · «Comprobar cobertura ahora» (formulario insular) · «Solicitar estudio gratuito» (Empresas). Uno por bloque" },
+    { "case": "Precios y cuotas", "formula": "Coma decimal española, símbolo € unido con espacio fino o directo coherente y siempre «/mes · IVA incluido»: «24,90 €/mes», «39,90 €/mes»" },
+    { "case": "Modo presentación / boceto", "formula": "Cuando una tarifa aún no tiene PVP cerrado se activa «Modo boceto» mostrando «XX,XX €/mes» sin alterar la estructura de la tarjeta" },
+    { "case": "Velocidades y datos", "formula": "Espacio antes de la unidad: «300 Mb», «600 Mb», «1 Gb», «50 GB», «80 GB», «GB ilimitados», «5G incluido»" },
+    { "case": "Topónimos menorquines", "formula": "Siempre en su forma oficial: «Maó», «Ciutadella», «Alaior», «Es Mercadal», «Ferreries», «Es Castell», «Sant Lluís», «Es Migjorn Gran», «Far de Favàritx»" },
+    { "case": "Permanencia", "formula": "«Sin permanencia» de forma explícita y llana; nunca «sujeto a condiciones de instalación» escondido al pie" },
+    { "case": "Cancelar", "formula": "Siempre «Cancelar» en modales y confirmaciones" },
+    { "case": "Guardar", "formula": "«Guardar cambios»; notificación efímera «Cambios guardados»" },
+    { "case": "Eliminar", "formula": "«Eliminar» + pregunta concreta («¿Eliminar la tarifa Combo Isla 600 Mb?») + consecuencia («Dejará de ofrecerse en la web pública»)" },
+    { "case": "Buscador", "formula": "«Buscar <qué>…»: «Buscar solicitudes…», «Buscar municipio o calle…», «Buscar tarifas…»" },
+    { "case": "Vacío", "formula": "«Todavía no hay <elemento>» + explicación útil: «Todavía no hay solicitudes en este filtro. Las consultas de cobertura desde la web o WhatsApp aparecerán aquí.»" },
+    { "case": "Sin resultados", "formula": "«Ningún resultado para “<término>”» + botón «Quitar filtros»" },
+    { "case": "Error", "formula": "«No se ha podido cargar <qué>. Vuelve a intentarlo.» + acción «Volver a intentarlo»" },
+    { "case": "Sin permisos", "formula": "«Acceso reservado al equipo de Menorca Connect» + «Inicia sesión con tu cuenta corporativa»" },
+    { "case": "Cobertura enviada", "formula": "«¡Solicitud recibida! Nuestro equipo técnico en Menorca comprobará tu dirección y te responderá por WhatsApp en menos de 15 minutos.»" },
+    { "case": "Consentimiento", "formula": "«He leído y acepto la política de privacidad» enlazando a /privacidad" }
+  ],
+  "screenTemplates": [
+    { "id": "list", "label": "Lista", "note": "PageHeader → SubNav → Toolbar → tabla/tarjetas → paginación. Sirve para la bandeja de altas y cobertura, órdenes de instalación y listado de nodos.", "states": ["data", "loading", "empty", "no-results", "error", "forbidden"] },
+    { "id": "detail-drawer", "label": "Detalle / solicitud", "note": "Drawer lateral para revisar una petición de alta o portabilidad (municipio, dirección, CTO cercana, tarifa elegida) y responder por WhatsApp sin salir de la tabla.", "states": ["data", "loading", "error", "unsaved"] },
+    { "id": "long-form", "label": "Editor de tarifas", "note": "Formulario estructurado (container-form) para editar cuotas mensuales, velocidades FTTH, datos 5G, conmutador Modo Boceto/PVP y barra fija de guardado.", "states": ["data", "loading", "error", "unsaved", "degraded"] },
+    { "id": "metrics", "label": "Resumen y analítica", "note": "Rejilla de Stat (altas del mes, líneas activas, tiempo medio de instalación, consultas WhatsApp) + gráficos con las series cat-1..4.", "states": ["data", "loading", "empty", "error", "degraded"] },
+    { "id": "empty", "label": "Vacío / primer uso", "note": "EmptyState centrado con icono, explicación directa y acción única; nunca tablas vacías con solo cabeceras.", "states": ["empty", "first-run"] },
+    { "id": "error", "label": "Error y 404", "note": "ErrorState claro con salida directa: reintentar en /dashboard o volver a tarifas y cobertura en la web pública.", "states": ["error", "forbidden", "not-found"] },
+    { "id": "auth", "label": "Acceso", "note": "Tarjeta limpia (container-modal-sm) sobre lienzo brisa con el logotipo oficial de Menorca Connect arriba, correo corporativo y contraseña.", "states": ["data", "error"] },
+    { "id": "public-landing", "label": "Portada web", "note": "Cabecera blanca → Hero del Faro de Favàritx con bg-scrim + 5 tarjetas de servicio superpuestas → franja marina de 4 compromisos → «Hecha para Menorca» → configurador de tarifas → comprobador de cobertura → pie marino.", "states": ["data"] },
+    { "id": "coverage-page", "label": "Cobertura y empresas", "note": "Cabecera marina → estado de fibra y 5G en los 8 municipios → galería del equipo local con Lightbox → bloque de soluciones para Empresas, hoteles y segundas residencias.", "states": ["data", "not-found"] },
+    { "id": "legal-page", "label": "Condiciones / legal", "note": "Lectura diáfana en container-prose con índice lateral para Condiciones generales sin permanencia, Aviso legal, Privacidad y Cookies.", "states": ["data", "not-found"] }
+  ],
+  "screenStates": [
+    { "id": "data", "label": "Con datos", "component": "—", "note": "Estado habitual de operación o escaparate comercial" },
+    { "id": "loading", "label": "Cargando", "component": "Skeleton", "note": "Reserva exacta de altura en filas o tarjetas de tarifa para evitar saltos de layout" },
+    { "id": "empty", "label": "Vacío", "component": "EmptyState", "note": "Sin registros todavía; icono, contexto y acción principal" },
+    { "id": "first-run", "label": "Primer uso", "component": "EmptyState", "note": "Bienvenida de módulo recién activado con acción guiada" },
+    { "id": "no-results", "label": "Sin resultados", "component": "EmptyState", "note": "Búsqueda de calle, municipio o cliente sin coincidencias; ofrece «Quitar filtros»" },
+    { "id": "error", "label": "Error de carga", "component": "ErrorState", "note": "Explica qué falló y ofrece «Volver a intentarlo»" },
+    { "id": "forbidden", "label": "Sin permisos", "component": "ErrorState", "note": "Icono lock en tono neutro cuando el perfil no tiene acceso al módulo" },
+    { "id": "not-found", "label": "No existe", "component": "ErrorState", "note": "404 en web con accesos directos a Tarifas, Cobertura y WhatsApp local" },
+    { "id": "degraded", "label": "Degradado / parcial", "component": "Alert", "note": "Si el servicio automático de nodos FTTH no responde, permite enviar la consulta igualmente al equipo local" },
+    { "id": "unsaved", "label": "Cambios sin guardar", "component": "Barra de guardado", "note": "Barra fija inferior y aviso antes de salir con tarifas editadas sin publicar" }
+  ],
+  "screenTemplateMap": [
+    { "view": "Gestión · Acceso (/dashboard/login)", "template": "auth" },
+    { "view": "Gestión · Resumen operativo (/dashboard)", "template": "metrics" },
+    { "view": "Gestión · Altas y cobertura, bandeja", "template": "list" },
+    { "view": "Gestión · Detalle de solicitud / portabilidad", "template": "detail-drawer" },
+    { "view": "Gestión · Bandeja sin solicitudes nuevas", "template": "empty" },
+    { "view": "Gestión · Catálogo de tarifas (editor de planes y precios)", "template": "long-form" },
+    { "view": "Gestión · Instalaciones FTTH y agenda técnica", "template": "list" },
+    { "view": "Gestión · Cobertura insular por municipio", "template": "list" },
+    { "view": "Gestión · Empresas y hostelería", "template": "long-form" },
+    { "view": "Gestión · Analítica comercial", "template": "metrics" },
+    { "view": "Gestión · Error de carga o permisos", "template": "error" },
+    { "view": "Web · Portada comercial (/)", "template": "public-landing" },
+    { "view": "Web · Cobertura en los 8 municipios y Empresas", "template": "coverage-page" },
+    { "view": "Web · Condiciones sin permanencia, Privacidad y Cookies", "template": "legal-page" },
+    { "view": "Web · 404", "template": "error" }
+  ],
+  "componentStates": {
+    "_comment": "Cada componente interactivo define sus 7 estados antes de darse por cerrado. «—» = no aplica.",
+    "columns": ["default", "hover", "focus-visible", "active", "disabled", "loading", "error"],
+    "rows": [
+      { "component": "Button", "states": ["✓", "cta-hover / secondary-hover", "anillo focus turquesa", "scale-[.99]", "opacity-50", "spinner manteniendo ancho", "—"] },
+      { "component": "IconButton", "states": ["✓", "surface-hover", "anillo focus", "aria-pressed", "opacity-50", "spinner", "—"] },
+      { "component": "Input / Textarea", "states": ["✓", "borde fuerte", "borde focus + anillo", "—", "opacity-50", "—", "borde danger + mensaje + icono"] },
+      { "component": "Select (Municipio)", "states": ["✓", "borde fuerte", "anillo focus", "abierto", "opacity-50", "skeleton", "borde danger"] },
+      { "component": "Checkbox / Radio", "states": ["✓", "borde fuerte", "anillo focus", "marcado", "opacity-50", "—", "borde danger"] },
+      { "component": "Switch (Modo Boceto / PVP)", "states": ["✓", "✓", "anillo focus", "on/off", "opacity-50", "—", "—"] },
+      { "component": "PlanCategoryTabs", "states": ["✓", "surface-hover", "anillo focus", "aria-selected (cápsula marina)", "opacity-50", "—", "—"] },
+      { "component": "FilterChip", "states": ["✓", "borde fuerte", "anillo focus", "tono primary", "opacity-50", "—", "—"] },
+      { "component": "Table row", "states": ["✓", "surface-hover", "anillo focus", "seleccionada", "—", "Skeleton", "—"] },
+      { "component": "ServiceCategoryCard (×5)", "states": ["✓", "elevación shadow-raised", "anillo focus en su CTA", "filtra pestaña de tarifa", "—", "Skeleton", "—"] },
+      { "component": "CoverageChecker / Formulario", "states": ["✓", "—", "anillo focus por campo", "—", "envío bloqueado", "«Comprobando…» con spinner", "alerta superior + error por campo"] }
+    ]
+  },
+  "motion": {
+    "_comment": "Contrato de movimiento implementado en tokens.css (§16).",
+    "rule": "La entrada asienta con agilidad (ease-out-expo) y la salida recoge en menos tiempo (ease-exit). Ninguna animación retrasa consultar un precio o comprobar cobertura.",
+    "surfaces": [
+      { "surface": "Modal y Lightbox", "clase": "ds-dialog + ds-surface", "entrada": "250 ms · fundido + escala 0,98→1", "salida": "150 ms · inversa", "origen": "centro", "disparador": "showModal()" },
+      { "surface": "Drawer de solicitud / alta", "clase": "ds-dialog + ds-surface--right", "entrada": "350 ms · desliza desde borde derecho", "salida": "240 ms · recoge hacia borde derecho", "origen": "borde derecho", "disparador": "showModal()" },
+      { "surface": "Menú móvil de la web", "clase": "ds-dialog + ds-surface--right", "entrada": "350 ms · desde la derecha", "salida": "240 ms · hacia la derecha", "origen": "borde derecho", "disparador": "botón menu" },
+      { "surface": "Velo (overlay)", "clase": "ds-dialog", "entrada": "250 ms · fundido", "salida": "150 ms · fundido", "origen": "—", "disparador": "con su diálogo" },
+      { "surface": "Menú contextual / Filtro", "clase": "ds-popover", "entrada": "150 ms · fundido + escala 0,97→1", "salida": "100 ms · inversa", "origen": "esquina del disparador (--ds-origin)", "disparador": "[data-open]" },
+      { "surface": "Tooltip", "clase": "ds-tooltip", "entrada": "150 ms tras 400 ms de espera", "salida": "100 ms sin espera", "origen": "el control", "disparador": "hover / focus-within" },
+      { "surface": "Toast", "clase": "ds-toast", "entrada": "250 ms · desde abajo", "salida": "150 ms · hacia abajo", "origen": "borde inferior", "disparador": "inserción en DOM · 4 s" },
+      { "surface": "Menú lateral (/dashboard)", "clase": "ds-sidebar + ds-sidebar-label", "entrada": "250 ms · ancho; etiquetas después", "salida": "250 ms · etiquetas se funden antes (100 ms)", "origen": "borde izquierdo", "disparador": "clic en isotipo · [data-collapsed]" },
+      { "surface": "Revelado comercial (web)", "clase": "ds-reveal", "entrada": "600 ms · fundido + 14px arriba, una sola vez", "salida": "permanece visible", "origen": "posición final", "disparador": "IntersectionObserver · [data-revealed]" }
+    ],
+    "reducedMotion": [
+      "El pulso de Skeleton y de indicadores en vivo se detiene.",
+      "Los desplazamientos y escalas se anulan; permanecen únicamente los fundidos de opacidad.",
+      "Los tooltips muestran ayuda sin retardo.",
+      "El scroll suave se convierte en salto directo instantáneo."
+    ],
+    "neverDo": [
+      "Salidas más lentas que las entradas.",
+      "Botones flotantes con latidos o rebotes continuos que distraigan la lectura de tarifas.",
+      "Transiciones lentas al cambiar entre pestañas de Fibra, Móvil, TV y Combos.",
+      "Parallax pesado en móvil sobre la imagen del Faro de Favàritx.",
+      "Bloquear el scroll del documento tras cerrar un modal o menú móvil."
+    ]
+  },
+  "responsive": {
+    "_comment": "Adaptación estructural pactada entre móvil, tableta y escritorio.",
+    "columns": ["Móvil (<640)", "Tableta (640–1024)", "Escritorio (>1024)"],
+    "rows": [
+      { "pattern": "Cabecera web", "values": ["Barra blanca h-16: logotipo + acceso WhatsApp compacto + botón Drawer", "Barra h-20 + Drawer", "Barra blanca h-20: logotipo completo, 7 enlaces y botón turquesa «WhatsApp 671 123 456»"] },
+      { "pattern": "Portada (Hero Favàritx)", "values": ["Titular 36px, 2 CTA apilados y tarjetas debajo", "Titular 44px, CTA en fila", "Titular 52px a la izquierda sobre el faro + las 5 tarjetas en fila única abajo"] },
+      { "pattern": "Tarjetas de categoría (×5)", "values": ["1 columna apilada con CTA ancho completo", "2–3 columnas equilibradas", "5 columnas iguales (Fibra, Móvil, TV, Fibra+Móvil, Fibra+Móvil+TV)"] },
+      { "pattern": "Franja marina de confianza", "values": ["1–2 columnas sin divisores verticales", "2×2 con iconos turquesa", "4 pilares en una sola banda sobre marino (#072140)"] },
+      { "pattern": "Configurador de tarifas", "values": ["Pestañas con scroll horizontal limpio + 1 tarjeta por fila", "2 columnas", "Pestañas centradas + 3 tarjetas comparativas con plan central destacado"] },
+      { "pattern": "Comprobador de cobertura", "values": ["Chips de 8 municipios + formulario en 1 columna", "1 columna amplia", "2 columnas: mapa textual de 8 municipios a la izquierda + formulario directo a la derecha"] },
+      { "pattern": "Menú de /dashboard", "values": ["Drawer desde botón menu", "Drawer desde botón menu", "Barra lateral marina fija, contraíble a 64px"] },
+      { "pattern": "Tabla de altas y cobertura", "values": ["Tarjetas apiladas con municipio, tarifa y estado", "Scroll horizontal limpio", "Tabla completa con filtro por municipio y apertura en Drawer"] }
+    ]
+  },
+  "domainComponents": [
+    { "name": "ServiceCategoryCard", "module": "web · tarifas", "note": "Las 5 tarjetas superpuestas del boceto original (Fibra Óptica, Móvil, TV, Fibra+Móvil, Fibra+Móvil+TV) con medallón de icono, cuota «desde», 3 ventajas y CTA temático accesible" },
+    { "name": "TrustBar", "module": "web · resumen", "note": "Banda estructural en esquema marino con los 4 compromisos de Menorca Connect: Atención cercana, Precios claros, Conexión rápida y Sin permanencia" },
+    { "name": "PlanCard", "module": "web · tarifas", "note": "Ficha detallada de tarifa con etiqueta superior, título, velocidad/GB, cuota mensual en tabular-nums (IVA incl.), lista de prestaciones y CTA a WhatsApp/contratación" },
+    { "name": "PriceModeSwitch", "module": "web · tarifas", "note": "Conmutador entre «Modo Boceto (XX,XX €)» y «Precios Demo (€)» para validar diseño o publicar tarifas definitivas sin tocar el HTML" },
+    { "name": "CoverageChecker", "module": "web · cobertura", "note": "Selector de los 8 municipios menorquines + calle/número + teléfono que verifica huella o envía consulta inmediata al equipo técnico local" },
+    { "name": "MunicipalityBadge", "module": "solicitudes · instalaciones · cobertura", "note": "Etiqueta compacta de municipio oficial (Maó, Ciutadella, Alaior, Es Mercadal, Ferreries, Es Castell, Sant Lluís, Es Migjorn Gran)" },
+    { "name": "BusinessQuoteCard", "module": "web · empresas", "note": "Bloque sobre superficie marina para pymes, hoteles, agroturismos y villas con IP fija, simetría garantizada y soporte prioritario" },
+    { "name": "WhatsAppAction", "module": "web", "note": "Acceso directo a atención local (671 123 456) resuelto con tokens AA del sistema (turquesa #0A7275 o secundario marino/brisa), nunca #25D366 con blanco" },
+    { "name": "StatusBadge", "module": "gestión", "note": "Insignia semántica conectada a statusModels (tono + variante + icono + etiqueta)" },
+    { "name": "InquiryRow", "module": "solicitudes", "note": "Fila/tarjeta de petición entrante con cliente, municipio, tarifa deseada, origen (Web / WhatsApp) y estado" },
+    { "name": "CategoryLegend", "module": "analitica", "note": "Leyenda de series cat-1..4 en orden fijo: Fibra óptica, Móvil 5G, Menorca TV y Combos" }
+  ],
+  "media": {
+    "fotografia": {
+      "encuadre": "Paisajes reconocibles de Menorca y escenas reales de conectividad local: el Faro de Favàritx al atardecer (assets/hero-favaritx.jpg), equipo cercano en arquitectura menorquina (assets/menorca-local-team.jpg) y teletrabajo frente a calas turquesa (assets/menorca-cala-connected.jpg).",
+      "personas": "Trato natural, cotidiano y cercano en calles encaladas, comercios y terrazas de la isla; prohibidas las fotos de call-center corporativo con auriculares de stock.",
+      "tratamiento": "Luz mediterránea limpia donde dialogan el azul marino del mar y los tonos turquesa y cálidos del atardecer menorquín, sin filtros neón artificiales.",
+      "overlay": "Toda fotografía con titular o texto claro encima aplica bg-scrim (marino #072140 al 76%), garantizando ~7,0:1 incluso sobre espuma blanca o cielo luminoso.",
+      "ratios": "16:9 panorámico en Hero de portada · 4:3 en secciones editoriales («Hecha para Menorca», «Empresas») · 16:10 en visor Lightbox."
+    },
+    "video": {
+      "ratios": "16:9 horizontal para piezas de marca o cobertura insular",
+      "autoplay": "Solo ambiental silenciado, con pausa visible y desactivado automáticamente con prefers-reduced-motion",
+      "posterFrame": "Obligatorio con fotograma real de Menorca (por ejemplo assets/hero-favaritx.jpg)"
+    },
+    "ilustracion": {
+      "permitida": "Únicamente el isotipo vectorial oficial (doble pico 'M' con ondas de señal en logo-menorca-connect.svg). Sin mascotas 3D ni clip-art tecnológico.",
+      "relacionConIconos": "Lucide 1.47 en currentColor para toda la interfaz, sustituyendo progresivamente los SVG inline sueltos de index.html."
+    },
+    "logosTerceros": {
+      "regla": "Cualquier logotipo externo (canales de TV, fabricantes de routers Wi-Fi 6 o sellos oficiales CNMC) se aísla con // DS-EXCEPTION si exige color oficial propio.",
+      "tamanoMinimo": "Altura mínima 24px con área de respeto equivalente a la mitad de su altura"
+    }
+  }
+}

@@ -255,6 +255,39 @@ const PLANS_DATA = {
 
 let currentPriceMode = 'sketch'; // 'sketch' ('XX,XX€') or 'real' ('24,90€')
 let currentCategory = 'combos';
+const PANEL_BRIDGE_URL = 'https://panel.menorcaconnect.com/api/public/web-bridge';
+
+async function syncCatalogFromPanelDb() {
+  try {
+    const res = await fetch(PANEL_BRIDGE_URL, { method: 'GET', mode: 'cors' });
+    if (!res.ok) return;
+    const data = await res.json();
+    if (data && data.ok && data.plansByCategory) {
+      ['combos', 'ofertas', 'fibra', 'movil', 'tv'].forEach((cat) => {
+        if (Array.isArray(data.plansByCategory[cat]) && data.plansByCategory[cat].length > 0) {
+          PLANS_DATA[cat] = data.plansByCategory[cat];
+        }
+      });
+      renderPlans(currentCategory);
+    }
+  } catch {
+    // Fallback silencioso a PLANS_DATA estático si el navegador está sin red
+  }
+}
+
+function sendLeadToPanelDb(payload) {
+  try {
+    fetch(PANEL_BRIDGE_URL, {
+      method: 'POST',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      keepalive: true,
+    }).catch(() => {});
+  } catch {
+    // No bloquear apertura de WhatsApp
+  }
+}
 
 function updateAllPriceElements() {
   const priceElements = document.querySelectorAll('[data-sketch][data-real]');
@@ -288,13 +321,25 @@ function renderPlans(categoryKey) {
           <ul class="plan-specs">
             ${plan.specs.map((s) => `<li>${s}</li>`).join('')}
           </ul>
-          <a href="https://wa.me/34671123456?text=${waText}" target="_blank" rel="noopener" class="plan-cta-btn ${plan.btnClass}">
+          <a href="https://wa.me/34671123456?text=${waText}" target="_blank" rel="noopener" class="plan-cta-btn ${plan.btnClass}" data-plan-title="${plan.title}">
             Lo quiero por WhatsApp
           </a>
         </div>
       `;
     })
     .join('');
+
+  container.querySelectorAll('[data-plan-title]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const planTitle = btn.getAttribute('data-plan-title') || '';
+      sendLeadToPanelDb({
+        fullName: `Interesado Web (${planTitle})`,
+        plan: planTitle,
+        source: 'web_menorcaconnect_tarifa',
+        notes: `Clic en contratar tarifa "${planTitle}" (${categoryKey}) desde menorcaconnect.com`,
+      });
+    });
+  });
 
   // Update active state on tabs
   document.querySelectorAll('.tariff-tab').forEach((tab) => {
@@ -355,17 +400,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 5. Coverage Form Submission -> Direct WhatsApp Consultation
+  // 5. Coverage Form Submission -> Save in Panel DB (real_leads) + Direct WhatsApp Consultation
   const coverageForm = document.getElementById('coverageForm');
   if (coverageForm) {
     coverageForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const address = document.getElementById('coverageAddress').value.trim();
       const phone = document.getElementById('coveragePhone').value.trim();
+      sendLeadToPanelDb({
+        fullName: `Consulta Cobertura (${phone})`,
+        phone,
+        address,
+        source: 'web_menorcaconnect_cobertura',
+        notes: `Solicitud de cobertura en "${address}" · Teléfono/WhatsApp: ${phone}`,
+      });
       const message = encodeURIComponent(
         `Hola Menorca Connect, quiero comprobar la cobertura de fibra/5G en mi dirección: "${address}". Mi teléfono de contacto es: ${phone}.`
       );
       window.open(`https://wa.me/34671123456?text=${message}`, '_blank', 'noopener');
     });
   }
+
+  // 6. Hydrate tariffs live from panel.menorcaconnect.com (Supabase real_products)
+  syncCatalogFromPanelDb();
 });

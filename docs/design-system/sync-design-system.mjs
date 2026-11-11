@@ -188,12 +188,14 @@ const GEN = {
 
 /* ── ejecución ────────────────────────────────────────────────────────────── */
 
-const [tokens, manifestRaw, guideBefore, docBefore] = await Promise.all([
+const lf = (s) => s.replace(/\r\n/g, '\n');
+const [tokensRaw, manifestRaw, guideRaw, docRaw] = await Promise.all([
   readFile(F.tokens, 'utf8'),
   readFile(F.manifest, 'utf8'),
   readFile(F.guide, 'utf8'),
   readFile(F.doc, 'utf8'),
 ]);
+const [tokens, guideBefore, docBefore] = [lf(tokensRaw), lf(guideRaw), lf(docRaw)];
 
 let manifest;
 try {

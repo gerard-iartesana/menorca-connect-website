@@ -1,0 +1,103 @@
+/* Panel de Gestión Principal (Dashboard) (https://panel.menorcaconnect.com/dashboard) */
+[data-context="gestion"], [data-ds-instance="gestion-main"] {
+  --ds-bg-page: #072140;
+  --ds-bg-surface: #0B2D56;
+  --ds-bg-elevated: #103A6B;
+  --ds-text-primary: #F3F7F9;
+  --ds-text-secondary: #B8CDD9;
+  --ds-accent-primary: #149A9C;
+  --ds-accent-secondary: #0A7275;
+  --ds-border-subtle: rgba(243, 247, 249, 0.14);
+  --ds-font-heading: 'Montserrat', sans-serif;
+  --ds-font-sans: 'Plus Jakarta Sans', sans-serif;
+  --ds-font-mono: 'Plus Jakarta Sans', monospace;
+  --ds-base-font-size: 16px;
+  --ds-heading-weight: 800;
+  --ds-card-radius: 14px;
+  --ds-button-radius: 8px;
+  --ds-border-width: 1px;
+  --ds-frame-style: clean;
+  --ds-container-max-width: 1440px;
+  --ds-glass-blur: 16px;
+  --ds-shadow-elevation: medium;
+  --ds-surface-density: comfortable;
+  --ds-button-effect: solid;
+}
+
+/* Página Web Corporativa Principal (https://menorcaconnect.com) */
+[data-context="web"], [data-ds-instance="web-main"] {
+  --ds-bg-page: #F3F7F9;
+  --ds-bg-surface: #FFFFFF;
+  --ds-bg-elevated: #072140;
+  --ds-text-primary: #072140;
+  --ds-text-secondary: #38506B;
+  --ds-accent-primary: #0A7275;
+  --ds-accent-secondary: #149A9C;
+  --ds-border-subtle: rgba(7, 33, 64, 0.12);
+  --ds-font-heading: 'Montserrat', sans-serif;
+  --ds-font-sans: 'Plus Jakarta Sans', sans-serif;
+  --ds-font-mono: 'Plus Jakarta Sans', monospace;
+  --ds-base-font-size: 16px;
+  --ds-heading-weight: 800;
+  --ds-card-radius: 14px;
+  --ds-button-radius: 8px;
+  --ds-border-width: 1px;
+  --ds-frame-style: soft-elevated;
+  --ds-container-max-width: 1280px;
+  --ds-glass-blur: 20px;
+  --ds-shadow-elevation: deep;
+  --ds-surface-density: spacious;
+  --ds-button-effect: solid;
+}
+
+/* Landing de Cobertura & Campañas Insulares (https://menorcaconnect.com/#cobertura) */
+[data-context="landing"], [data-ds-instance="landing-main"] {
+  --ds-bg-page: #072140;
+  --ds-bg-surface: #0B2D56;
+  --ds-bg-elevated: #103A6B;
+  --ds-text-primary: #F3F7F9;
+  --ds-text-secondary: #B8CDD9;
+  --ds-accent-primary: #0A7275;
+  --ds-accent-secondary: #E5960A;
+  --ds-border-subtle: rgba(243, 247, 249, 0.14);
+  --ds-font-heading: 'Montserrat', sans-serif;
+  --ds-font-sans: 'Plus Jakarta Sans', sans-serif;
+  --ds-font-mono: 'Plus Jakarta Sans', monospace;
+  --ds-base-font-size: 16px;
+  --ds-heading-weight: 800;
+  --ds-card-radius: 18px;
+  --ds-button-radius: 8px;
+  --ds-border-width: 1px;
+  --ds-frame-style: soft-elevated;
+  --ds-container-max-width: 1280px;
+  --ds-glass-blur: 20px;
+  --ds-shadow-elevation: deep;
+  --ds-surface-density: spacious;
+  --ds-button-effect: glow;
+}
+
+/* APP / PWA & Escritorio Tauri (https://panel.menorcaconnect.com) */
+[data-context="app"], [data-ds-instance="app-main"] {
+  --ds-bg-page: #072140;
+  --ds-bg-surface: #0B2D56;
+  --ds-bg-elevated: #103A6B;
+  --ds-text-primary: #F3F7F9;
+  --ds-text-secondary: #B8CDD9;
+  --ds-accent-primary: #149A9C;
+  --ds-accent-secondary: #2D7A1F;
+  --ds-border-subtle: rgba(243, 247, 249, 0.14);
+  --ds-font-heading: 'Montserrat', sans-serif;
+  --ds-font-sans: 'Plus Jakarta Sans', sans-serif;
+  --ds-font-mono: 'Plus Jakarta Sans', monospace;
+  --ds-base-font-size: 16px;
+  --ds-heading-weight: 800;
+  --ds-card-radius: 14px;
+  --ds-button-radius: 8px;
+  --ds-border-width: 1px;
+  --ds-frame-style: clean;
+  --ds-container-max-width: 1440px;
+  --ds-glass-blur: 16px;
+  --ds-shadow-elevation: medium;
+  --ds-surface-density: compact;
+  --ds-button-effect: solid;
+}
